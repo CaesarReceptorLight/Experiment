@@ -1,0 +1,255 @@
+{
+	"Basic Information": [{
+		"index": 1,
+		"name": "Unique ID",
+		"key": "UId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Global unique ID of this object."
+	}, {
+		"index": 2,
+		"name": "Unique Name",
+		"key": "Name",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Global unique Name of this object."
+	}, {
+		"index": 3,
+		"name": "Owner ID",
+		"key": "OwnerId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of user who creates this object."
+	}, {
+		"index": 4,
+		"name": "Owner Group ID",
+		"key": "OwnerGroupId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of group of user who creates this object."
+	}, {
+		"index": 5,
+		"name": "Original Object ID",
+		"key": "OriginalObjectId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of source object of this object, if this object is a copy of an existing object."
+	}, {
+		"index": 6,
+		"name": "Child Object IDs",
+		"key": "ChildObjectIds",
+		"isVisible": "False",
+		"type": "omero.model.IntValueListI",
+		"uiType": "freeText",
+		"help": "ID of all child objects, if this object is a container object."
+	}, {
+		"index": 7,
+		"name": "Date and Time of creating",
+		"key": "CreationDateTime",
+		"isVisible": "False",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "date",
+		"help": "Date and Time of creating."
+	}, {
+		"index": 8,
+		"name": "Status",
+		"key": "Status",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Status of this object (active, inactive, ...)"
+	}, {
+		"index": 9,
+		"name": "Group Name",
+		"key": "NameOfGroup",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the name (or abbreviation) of your department and group."
+	}, {
+		"index": 10,
+		"name": "Project Name",
+		"key": "NameOfProject",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter a unique name for your project."
+	}, {
+		"index": 11,
+		"name": "Date of Execution.",
+		"key": "Date",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "date",
+		"help": "Please enter the date, on which the experiment was performed."
+	}, {
+		"index": 12,
+		"name": "Start Time",
+		"key": "Time",
+		"isVisible": "False",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "time",
+		"help": "Please enter the date, on which the experiment was started."
+	}, {
+		"index": 13,
+		"name": "Contact Person",
+		"key": "ContactPerson",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the names and departments of the contact persons or principal investigators who are responsible for this entry and should be contacted for further questions."
+	}, {
+		"index": 14,
+		"name": "Root Folder ID",
+		"key": "RootFolderId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of the root folder where additional experiment data are stored."
+	}, {
+		"index": 15,
+		"name": "Dataset ID",
+		"key": "DatasetId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of the dataset this experiment belongs to.."
+	}, {
+		"index": 16,
+		"name": "Description",
+		"key": "Description",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter a more detailed description of this experiment."
+	}],
+	"Setup": [{
+		"index": 17,
+		"name": "Microscope Configuration",
+		"key": "MicroscopeConfig",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "Textarea",
+		"help": "Please enter the microscope configuration."
+	}, {
+		"index": 18,
+		"name": "Additional Information",
+		"key": "AdditionalInformation",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter additional information about the setup that is not recorded by the microscope software."
+	}],
+	"Specimen": [{
+		"index": 19,
+		"name": "Type of Specimen",
+		"key": "Type",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter information about the type of specimen you used."
+	}, {
+		"index": 20,
+		"name": "Subclassification",
+		"key": "Subclassification",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the subclassification of the specimen you used."
+	}, {
+		"index": 21,
+		"name": "Preparation",
+		"key": "Preparation",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please provide information about how the specimen was prepared by entering a description and placing links to SOPs. Enter the dates at which the critical steps have been performed. Example: Cells were seeded on coverslips on 2015/02/24 and transfected on 2015/02/25."
+	}, {
+		"index": 22,
+		"name": "Transfection",
+		"key": "Transfection",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please provide information about the transfection procedure by entering a description and placing links to SOPs. Please enter the type and amount of the used plasmid (link to the DNA amplification database). Example: HEK293 cells were transfected of [link to DNA amplification database] using the [link to SOP] technique."
+	}, {
+		"index": 23,
+		"name": "RNA-Injection",
+		"key": "RNAInjection",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please provide information about the RNA preparation and injection procedures. Please enter the type and amount of the used RNA, and the link to the RNA batch. Example: Xenopus laevis oocytes were injected  of [link to RNA amplification database] using the [link to SOP] technique"
+	}, {
+		"index": 24,
+		"name": "Incubation",
+		"key": "Incubation",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please provide information about the incubation procedure by entering a description and placing links to SOPs. Following informations are important: Chemicals/drugs/stock solutions; conditions during the incubation (temperature, humidity, O2/CO2-content)"
+	}, {
+		"index": 25,
+		"name": "Fixation",
+		"key": "Fixation",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please provide information about the fixation procedure by entering a description and placing links to SOPs."
+	}],
+	"Solutions": [{
+		"index": 26,
+		"name": "Bath Solution",
+		"key": "BathSolution",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please provide information about the solutions used during the experiment by entering a description and placing links to SOPs and the solution/drug database."
+	}, {
+		"index": 27,
+		"name": "Pipette Solution",
+		"key": "PipetteSolution",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please provide information about the pipette solutions used during the experiment by entering a description and placing links to SOPs and the solution/drug database"
+	}],
+	"Additional Notes": [{
+		"index": 28,
+		"name": "Rating of Experiment",
+		"key": "RatingOfExperiment",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please rate the experiment by chosing a category from the list box or entering your own grade. Include report on errors that have occurred."
+	}, {
+		"index": 29,
+		"name": "Tags",
+		"key": "Tags",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Here, you can assign tags to your experiment. In this way it is possible to highlight good measurements or label experiments that have been included in one study."
+	}, {
+		"index": 30,
+		"name": "Other Information",
+		"key": "OtherInformation",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter and link all further information which is important to the experiment."
+	}, {
+		"index": 31,
+		"name": "Notes",
+		"key": "Notes",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter and link all further information which is important to the experiment."
+	}]
+}

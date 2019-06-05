@@ -1,0 +1,159 @@
+{% load rl_filters %}
+<script type="text/javascript">
+
+        $(document).ready(function(){
+
+            // Handle click on collapsible panes
+            $('#receptor_experiment_tab .can-collapse').click(function () {
+                $(this).toggleClass('closed').next().slideToggle();
+                // remember which panes are expanded
+                var open = [];
+                $('#receptor_experiment_tab .can-collapse').each(function(){
+                    var $this = $(this);
+                    if (!$this.hasClass('closed') && $this.attr('data-name')) {
+                        open.push($this.attr('data-name'));
+                    }
+                });
+                $("#receptor_experiment_tab").data('open_panes', open);
+            });
+
+
+            // Expand any previously opened panes
+            var open_panes = $("#receptor_experiment_tab").data('open_panes');
+            if (open_panes === undefined) {
+                open_panes = ["details"];
+            }
+
+            open_panes.forEach(function(name) {
+                // remove 'defclose' flag from open panes
+                $('#receptor_experiment_tab .can-collapse[data-name="' + name + '"]').removeClass('defclose');
+            });
+
+            // Any panes that still have 'defclose' flag, we close
+            $('.can-collapse.defclose').removeClass('defclose').addClass('closed').next().hide();
+
+
+            dialog_options = {
+                autoOpen: false,
+                resizable: true,
+                height: 840,
+                width: 1080,
+                modal: true,
+                close: function(event)  {
+                    if ($(".exp_material_dialog").hasClass('ui-dialog-content')) {
+                        $(".exp_material_dialog").dialog(dialog_options).dialog( "close" );
+                        $(".exp_material_dialog").dialog(dialog_options).dialog( "destroy" );
+                        $(".exp_material_dialog").empty();
+                        <!--$(".exp_material_dialog").dialog(dialog_options).remove();-->
+                    }
+                }
+
+            }
+
+
+            // Dialog for the Experiment Materials
+            $('.dialog_details').click(function(event) {
+                event.preventDefault();
+                var url = $(this).attr('href');
+                var title = $(this).attr('title');
+                $(".exp_material_dialog").data('url', url).dialog(dialog_options).dialog("open");
+                $(".exp_material_dialog").dialog("option", "title", title);
+                // load form via AJAX...
+                $(".exp_material_dialog").html('').load(url);
+                return false;
+            });
+
+            $('.exp_material_dialog').ajaxForm({
+                success: function(data) {
+                    $(".exp_material_dialog .tabContent").html(data);
+                    <!--$(".exp_material_dialog").dialog(dialog_options).dialog( "close" );      // hide in case it was submitted via 'Enter'-->
+                }
+            });
+       });
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/static/Experiment/css/experiment.css" type="text/css" />
+<div id="experiment_tab" class="right_tab_inner">{% csrf_token %}
+    <h1><a href="{% url 'get_search_tabs' %}" title="Search" class="dialog_details">Search</a></h1>
+    <!-- <h1><a href="{% url 'semantic_search' %}" title="Search Ontology" class="dialog_details">Semantic Search</a></h1> -->
+    <h1 class="can-collapse defclose load_experiment_data" data-name="details">Experiment</h1>
+    <div>
+        <div><h1>
+            <a id="experiment_details" href="{% url 'get_exp_material_details'%}?input_type=Experiment&dataset={{dataset}}&can_add={{can_add}}" class="btn silver btn_add dialog_details" title="Experiment"><span></span></a>
+        </h1></div>
+
+        {% if Experiments %}
+            {% for sec in sections %}
+                {% for section, data in Experiments.items %}
+                    {% if sec == section %}
+                        <!--<h1 class="can-collapse defclose" data-name="details">{{section}}</h1>-->
+                        <h1>{{section}}</h1>
+
+                        <div class="receptor_form">
+                            <table>
+                                {% for val in data %}
+                                    {% if val.isVisible == 'True' %}
+                                        <tr>
+                                            <th class="exp_element_label">{{val.name}}:</th>
+                                            {% if val.uiType == 'richText' %}
+                                                <td class="element_value">
+                                                    {% autoescape off %}
+                                                        {{ val.value | display_richtext}}
+                                                    {% endautoescape %}
+                                                </td>
+                                            {% elif val.uiType == 'file' %}
+                                                <td>
+                                                    <a href="{% url 'download_file' %}?fileId={{val.fileId}}">{{val.value}}</a>
+                                                </td>
+                                            {% else %}
+                                            <td class="element_value">{{ val.value }}
+                                                {% if val.unit and val.value %}
+                                                    {{val.unit}}
+                                                {% endif %}
+                                            </td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </table>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% else %}
+            {% if message %}
+                <h1>{{message}}</h1>
+            {% endif %}
+        {% endif %}
+
+    </div>
+    <h1 class="can-collapse defclose load_experiment_material_data" data-name="details">Materials used for the Experiment</h1>
+    <div class="exp_materials_section">
+        <h1>Plasmid: <a id="plasmid_details" href="{% url 'get_exp_material_details'%}?input_type=Plasmid&dataset={{dataset}}" class="btn silver btn_add dialog_details" title="Plasmid"><span></span></a>
+        </h1>
+        <h1>Vector: <a id="vector_details" href="{% url 'get_exp_material_details'%}?input_type=Vector&dataset={{dataset}}" class="btn silver btn_add dialog_details" title="Vector"><span></span></a>
+        </h1>
+        <h1>Protein: <a id="protein_details" href="{% url 'get_exp_material_details'%}?input_type=Protein&dataset={{dataset}}" class="btn silver btn_add dialog_details" title="Protein"><span></span></a>
+        </h1>
+        <h1>Chemical Substance: <a id="chemical_substance_details" href="{% url 'get_exp_material_details'%}?input_type=ChemicalSubstance&dataset={{dataset}}" class="btn silver btn_add dialog_details" title="Chemical Substance"><span></span></a>
+        </h1>
+        <h1>DNA: <a id="dna_details" href="{% url 'get_exp_material_details'%}?input_type=Dna&dataset={{dataset}}" class="btn silver btn_add dialog_details" title="DNA"><span></span></a>
+        </h1>
+        <h1>RNA: <a id="rna_details" href="{% url 'get_exp_material_details'%}?input_type=Rna&dataset={{dataset}}" class="btn silver btn_add dialog_details" title="RNA"><span></span></a>
+        </h1>
+        <h1>Solution: <a id="solution_details" href="{% url 'get_exp_material_details'%}?input_type=Solution&dataset={{dataset}}" class="btn silver btn_add dialog_details" title="Solution"><span></span></a>
+        </h1>
+        <h1>Restriction Enzymes: <a id="restrictionenzymes_details" href="{% url 'get_exp_material_details'%}?input_type=RestrictionEnzyme&dataset={{dataset}}" class="btn silver btn_add dialog_details" title="Restriction Enzymes"><span></span></a>
+        </h1>
+        <h1>Fluorescent Protein: <a id="fluorescentprotein_details" href="{% url 'get_exp_material_details'%}?input_type=FluorescentProtein&dataset={{dataset}}" class="btn silver btn_add dialog_details" title="Fluorescent Protein"><span></span></a>
+        </h1>
+        <h1>Oligonucleotide: <a id="oligonucleotide_details" href="{% url 'get_exp_material_details'%}?input_type=Oligonucleotide&dataset={{dataset}}" class="btn silver btn_add dialog_details" title="Oligonucleotide"><span></span></a>
+        </h1>
+        <h1>SOP: <a id="sop_details" href="{% url 'get_exp_material_details'%}?input_type=Sop&dataset={{dataset}}" class="btn silver btn_add dialog_details" title="SOP"><span></span></a>
+        </h1>
+    </div>
+    </div>
+</div>
+<div class="exp_material_dialog"></div>

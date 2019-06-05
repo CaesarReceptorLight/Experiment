@@ -1,0 +1,95 @@
+{% load form_utils %}
+{% load i18n %}
+{% load common_filters %}
+{% load common_tags %}
+
+<!--<script type="text/javascript" src="{% static '3rdparty/jquery.tablesorter-2.0.3/jquery.tablesorter.js' %}"></script>-->
+<!--<script type="text/javascript" src="{% static '3rdparty/jquery.quicksearch-1.0.js' %}"></script>-->
+
+<script type="text/javascript">
+
+        $(document).ready(function() {
+
+            $("table#dataTable tbody tr").click(function(event) {
+                <!--alert(event);-->
+            });
+
+            var tabs = $(".searchtabs-container").tabs();
+            var tabCounter = tabs.find('ul').first().children().length;
+
+            // Open View Tab for Viewing
+            $('.view_tab').click( function(event){
+                event.preventDefault();
+                var url = $(this).attr("href");
+                var ul = tabs.find( "ul" );
+                $( '<li class="rl_tabs"><a href="' + url + '"><span class="rl_tab_header">View</span></a><button type="button" class="ui-button ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close ui-closable-tab" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></li>' ).appendTo( ul );
+                tabs.tabs( "refresh" );
+                tabs.tabs( "option", "active", -1 );
+            });
+
+            tabs.on( "click", ".ui-closable-tab", function() {
+                var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
+                $( "#" + panelId ).remove();
+                tabs.tabs( "refresh" );
+            });
+
+            // plugin to handle drag-select of images
+            $("table#dataTable tbody").selectable({
+                filter: 'tr',
+                distance: 2,
+                stop: function(){
+                    var selected = $('tr.ui-selected', this);
+
+                },
+                start: function(){
+                }
+            });
+
+
+            <!--$("#dataTable").tablesorter( {sortList: [[1,0]]} );-->
+
+            $('input#id_search').quicksearch('table#dataTable tbody tr', {
+                'delay': 300,
+                'loader': 'span.loading'
+            });
+        });
+</script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'webgateway/css/ome.table.css' %}"/>
+<div id="fragment-1" class="tabContent">
+<div class="search_form">
+    <div id="searching">
+        <form id="search_experiment_form" method="post" class="standard_form" action="{% url 'search_experiment' %}">{% csrf_token %}
+            <div style="clear:both"></div>
+            <h1><label for="search_query">{% trans "Search" %}:</label></h1>
+            <input class="search_text" type="text" name="search_query" value="{{ search_query }}" size="35"/>
+            <input id="search_button" type="submit" value="Search" />
+        </form>
+    </div>
+    <div id="content_details">
+        {% if search_results %}
+            <table id="dataTable" class="rl_dataTable tablesorter">
+                <thead>
+                    <tr>
+                        <th class="table_desc">{% trans "Name" %}</th>
+                        <th class="table_images">{% trans "Type" %}</th>
+                        <th class="table_date">{% trans "Found in" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for val in search_results %}
+                        <tr>
+                            <th><a href="{% url 'view_input_data' %}?input_type={{val.type}}&id={{val.id}}" id="view_tab-{{val.id}}" class="view_tab">{{val.name}}</a><span></span></th>
+                            <th>{{val.type}}</th>
+                            <th>{{val.found_in}}</th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% elif message %}
+            <h1>{{message}}</h1>
+        {% endif %}
+    </div>
+</div>
+
+

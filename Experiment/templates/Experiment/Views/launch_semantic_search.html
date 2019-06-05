@@ -1,0 +1,95 @@
+{% load form_utils %}
+{% load i18n %}
+{% load common_filters %}
+{% load common_tags %}
+<script type="text/javascript" src="/static/Experiment/3rdparty/codemirror.js"></script>
+<link rel="stylesheet" href="/static/Experiment/css/codemirror.css" type="text/css" />
+<script type="text/javascript" src="/static/Experiment/3rdparty/sparql.js"></script>
+<link rel="stylesheet" href="/static/Experiment/css/experiment.css" type="text/css" />
+
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        var tabs = $("#searchtabs-container").tabs();
+        var tabCounter = tabs.find('ul').first().children().length;
+
+        var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+            lineNumbers: true,
+            mode: "application/sparql-query"
+        });
+
+
+        $(function() {
+            $.getJSON("/Experiment/get_instances/", function(data) {
+                $("#filter_instances").autocomplete({
+                    source: data,
+                    minLength: 1
+                });
+            });
+        });
+
+        $('#filter_properties').on('focus', function() {
+            var class_value = $("#filter_instances")[0].value
+            $.getJSON("/Experiment/get_properties/", {class_value:class_value}, function(data) {
+                $("#filter_properties").autocomplete({
+                    source: data,
+                    minLength: 1
+                });
+            });
+        });
+
+        $('#filter_instances').on('autocompleteselect', function(event, ui) {
+            var item_instance = ui.item.value;
+            editor.getDoc().setValue(ui.item.value);
+            var query = "SELECT DISTINCT * \nWHERE {?item  a :" + item_instance + " \n OPTIONAL { ?item :name ?name }}"
+            editor.getDoc().setValue(query);
+
+        });
+
+        $('#filter_properties').on('autocompleteselect', function(event, ui) {
+            var item_instance = ui.item.value;
+            var editor_value = editor.getDoc().getValue();
+            var whereindex = editor_value.lastIndexOf("}");
+            var instance_string = item_instance.replace('-', '');
+            var where_claus = "\n OPTIONAL {?item :" + item_instance + " ?" + instance_string + " }";
+            instance_query = [editor_value.slice(0, whereindex), where_claus, editor_value.slice(whereindex)].join(' ');
+            var query = instance_query;
+            editor.getDoc().setValue(query);
+
+        });
+
+        editor.on("change", function(cm, change) {
+
+        });
+
+
+    });
+</script>
+
+<div id="exp_material_dialog_details">
+    <div id="searchtabs-container" class="multitabdialog">
+        <ul class="tabs-menu">
+            <li class="rl_tabs"><a href="{% url 'semantic_search_experiment' %}"><span class="rl_tab_header">SPARQL Search</span></a></li>
+        </ul>
+    </div>
+    <!-- <form id="semanticsearch_experiment_form" method="post" class="standard_form" action="{% url 'semantic_search_experiment' %}">{% csrf_token %}
+    <div class="tab">
+        <div id="block_container">
+            <div class="ui-widget instance_class">
+                <label for="filter_instances">Add Class: </label>
+                <input id="filter_instances">
+            </div>
+            <div class="ui-widget property_class">
+                <label for="filter_properties">Add Property: </label>
+                <input id="filter_properties">
+            </div>
+        </div> -->
+    <textarea id="editor" name="sparql_query_text"></textarea>
+
+
+    </div>
+    <input type="submit" value="Run Query">
+    </form>
+</div>

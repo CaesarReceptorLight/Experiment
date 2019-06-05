@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 
+# Copyright 2006-2014 University of Dundee. All rights reserved.
+# Use is subject to license terms supplied in LICENSE.txt
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-->
+<types>
+<!-- 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	ReceptorLight Types
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+-->
+
+         <type id="ome.model.core.RlBaseObject">
+            <properties>
+                <required name="UId" type="int"/>
+                <required name="Name" type="string"/>
+                <required name="OwnerId" type="int"/>
+                <required name="OwnerGroupId" type="int"/>
+                <required name="OriginalObjectId" type="int"/>
+                <required name="CreationDateTime" type="string"/>
+                <required name="Status" type="int"/>
+            </properties>
+        </type>
+
+         <type id="ome.model.core.Plasmid">
+            <properties>
+                <required name="UId" type="int"/>
+                <required name="Name" type="string" label="Name" help="Name of the plasmid"/>
+                <required name="Description" type="string" label="Description" help="Gives a short description of the plasmid and the protein encoded by the plasmid."/>
+                <required name="Link" type="string" label="Link"/>
+                <required name="Organism" type="string" label="Organism" help="Organism from which the cDNA of the insert was obtained"/>
+                <required name="OriginalProteinLength" type="int" label="Original Protein Length" help="Original length of the encoded protein in number of amino acids"/>
+                <required name="ActualProteinLength" type="int" label="Actual Protein Length" help="Actual length of the encoded protein in number of amino acids"/>
+                <required name="DeletionSite" type="int" label="Deletion Site" help="Site of deletions " />
+                <required name="DeletionLength" type="int" label="Deletion Length" help="length of deletions "/>
+                <required name="VectorBackboneId" type="int" label="Vector Backbone Id"   help="Link to the data base of the vector, in which the sequence has been inserted"/>
+                <required name="InsertSite" type="int" label="Insert Site" help="Size of the insert in base pairs"/>
+                <required name="CDNASourceVectorId" type="int" label="CDNA Source Vector" help="link to the plasmid, which was used as template for PCR"/>
+                <required name="CDNASourceDnaPrepId" type="int"/>
+                <required name="PCRPrimer" type="string" label="PCR Primer" help="link to the name and sequence of the forward and reverse primer"/>
+                <required name="CloningSites3End" type="string" label="3'-Cloning Sites" help="Name of the restriction site/enzyme at the 3‘ end"/>
+                <required name="CloningSites5End" type="string" label="5'-Cloning Sites" help="Name of the restriction site/enzyme at the 5‘ end"/>
+                <required name="SequencingPrimer3End" type="string" label="3'-Sequencing Primer" help="link to the name and sequence of the sequencing primer"/>
+                <required name="SequencingPrimer5End" type="string" label="5'-Sequencing Primer" help="link to the name and sequence of the sequencing primer"/>
+                <required name="MutagenesisPosition" type="string" label="Mutagenesis sites 5'-3'"  help="position of the mutagenesis site with respect to the start of the triplet and the base"/>
+                <required name="MutagenesisKit" type="string" label="MutagenesisKit" help="kit used for mutagenesis"/>
+                <required name="MutagenesisPrimer3End" type="string" label="3'-mutagenesis primer" help="link to the name and sequence of the forward mutagenesis primer"/>
+                <required name="MutagenesisPrimer5End" type="string" label="5'-mutagenesis primer" help="link to the name and sequence of the reverse mutagenesis primer"/>
+                <required name="ReferencePaper" type="string" label="Reference Paper" help="Citation of the paper where the plasmid (or its first use) was described"/>
+                <required name="ReferencePaperDOI" type="string" label="Reference Paper DOI" help="Digital object identifier (doi) of the paper" input_type="weblink" link_type="doi"/>
+                <required name="ReferencePaperPubMedId" type="string" label="Reference Paper PubMedId" help="PubMed ID of the paper" input_type="weblink" link_type="pubmed"/>
+                <required name="NCBIGenBankId" type="string" label="NCBI GenBank Id" help="Link to the NCBI GenBank" input_type="weblink" link_type="ncbiNuccore"/>
+                <required name="FASTALink" type="string" label="FASTA Link" help="Link to the FASTA database"/>
+                <required name="OtherLinks" type="string" label="OtherLinks" help="Link to other databases"/>
+                <required name="Origin" type="string" label="Origin" help="Name/Link to the creator of the vector "/>
+                <required name="OriginId" type="string" label="Origin Id" help="Original name of the vector assigned by its creator"/>
+                <required name="Distributor" type="string" label="Distributor" help="Contains the name of the PI/distributor, from whom the plasmid was obtained"/>
+                <required name="DistributorId" type="string" label="Distributor Id" help="Contains original name/ID of the vector used in the lab of the PI from whom the plasmid was received"/>
+                <required name="ReceivedDate" type="string" label="Received Date" help="Date, when the plasmid was received." input_type="date"/>
+                <required name="Verification" type="string" label="Verification"/>
+                <required name="VerificationLink" type="string" label="Verification Link" help="Contains link to the sequence data file"/>
+                <required name="PlasmidStorage" type="string" label="Plasmid Storage" help="Site where the original plasmid is stored"/>
+                <required name="Amplifications" type="string" label="Amplifications" help="Record of all amplifications. Each data set should contain:•	date of the amplification•	kit/sop used•	result of the restriction digestion (link to jpg)•	DNA content•	storage site"/>
+                <required name="PrincipleInvestigator" type="string" label="Principle Investigator" help="Names of the PIs involved in the project."/>
+                <required name="ProteinSequences" type="string" label="Protein Sequences" help="Contains to material transfer documents, licenses which have to be complied with"/>
+                <required name="AliquotsSentTo" type="string" label="Aliquots Sent To" help="List of researchers to whom aliquots have been sent"/>
+				<required name="OwnerId" type="int" label="Owner Id"/>
+				<required name="OwnerGroupId" type="int" label="Owner Group Id"/>
+				<required name="OriginalObjectId" type="int" label="Original Object Id"/>
+				<!--<required name="CreationDateTime" type="string" label="Creation Time" input_type="date"/>-->
+            </properties>
+        </type>
+
+        <type id="ome.model.core.Vector">
+            <properties>
+                <required name="UId" type="int"/>
+                <required name="Name" type="string" label="Name"/>
+                <required name="Description" type="string" label="Description"/>
+                <required name="Link" type="string" label="Link"/>
+                <required name="Type" type="string" label="Type"/>
+                <required name="Size" type="int" label="Size" unit="bp"/>
+                <required name="EcoliStrain" type="string" label="Ecoli-Strain"/>
+                <required name="HighLowCopy" type="string" label="HighLow-Copy"/>
+                <required name="BacterialResistance" type="string" label="Bacterial Resistance"/>
+                <required name="GrowthConditions" type="string" label="Growth Conditions"/>
+                <required name="StableCallSelection" type="string" label="Stable Call Selection"/>
+                <required name="ReferencePaper" type="string" label="Reference Paper" />
+                <required name="ReferencePaperDOI" type="string" label="Reference - DOI" input_type="weblink" link_type="doi"/>
+                <required name="ReferencePaperPubMedId" type="string" label="Reference - PubMed ID" input_type="weblink" link_type="pubmed"/>
+                <required name="Origin" type="string" label="Origin"/>
+                <required name="OriginId" type="string" label="Origin ID"/>
+                <required name="Distributor" type="string" label="Distributor"/>
+                <required name="DistributorId" type="string" label="Distributor Id"/>
+                <required name="ReceivedDate" type="string" label="Received Date" input_type="date"/>
+                <required name="Verification" type="string" label="Verification"/>
+                <required name="VerificationLink" type="string" label="Verification Link"/>
+                <required name="PlasmidStorage" type="string" label="Plasmid Storage"/>
+                <required name="Amplifications" type="string" label="Amplifications"/>
+                <required name="PrincipleInvestigator" type="string" label="Principle Investigator"/>
+                <required name="ProteinSequences" type="string" label="Protected Sequences / MTAs"/>
+                <required name="AliquotsSentTo" type="string" label="Aliquots sent to"/>
+				<required name="OwnerId" type="int" label="Owner Id"/>
+				<required name="OwnerGroupId" type="int" label="Owner Group Id"/>
+				<required name="OriginalObjectId" type="int" label="Original Object Id"/>
+				<!--<required name="CreationDateTime" type="string" label="Creation Time"  input_type="date"/>-->
+            </properties>
+        </type>
+
+        <type id="ome.model.core.StringValueList">
+            <properties>
+                <zeromany name="Values" type="ome.model.core.StringValue" ordered="false" inverse="stringValueList"/>
+            </properties>
+        </type>
+
+        <type id="ome.model.core.StringValue">
+            <properties>
+                <required name="Value" type="string"/>
+                <manyzero name="stringValueList" type="ome.model.core.StringValueList" inverse="Values"/>
+            </properties>
+        </type>
+
+		<type id="ome.model.core.IntValueList">
+            <properties>
+                <zeromany name="Values" type="ome.model.core.IntValue" ordered="false" inverse="intValueList"/>
+            </properties>
+        </type>
+
+        <type id="ome.model.core.IntValue">
+            <properties>
+                <required name="Value" type="int"/>
+                <manyzero name="intValueList" type="ome.model.core.IntValueList" inverse="Values"/>
+            </properties>
+        </type>
+
+        <type id="ome.model.core.RlExperiment">
+            <properties>
+                <required name="UId" type="int"/>
+                <required name="Name" type="string" label="Name"/>
+                <required name="Date" type="string" label="Date" help="The date on which the experiment was performed.Example:12.05.2016" input_type="date"/>
+                <required name="Time" type="string" label="Time" help="time at which the experiment was startedExample:14:15"/>
+				<required name="DatasetIds" type="ome.model.core.IntValueList"/>
+                <required name="Setup" type="ome.model.core.RlExperimentSetup"/>
+                <required name="Specimen" type="ome.model.core.RlSpecimen"/>
+                <required name="Solutions" type="ome.model.core.RlExperimentSolutions"/>
+				<required name="OwnerId" type="int" label="Owner Id"/>
+				<required name="OwnerGroupId" type="int" label="Owner Group Id"/>
+				<required name="OriginalObjectId" type="int" label="Original Object Id"/>
+				<!--<required name="CreationDateTime" type="string" label="Creation Time" input_type="date"/>-->
+            </properties>
+        </type>
+
+        <type id="ome.model.core.RlExperimentSetup">
+            <properties>
+                <required name="MicroscopeConfiguration" type="ome.model.core.StringValueList" label="Microscope Configuration" help="Additional Information about the microscope that are not recorded inside the image.Examples: Objective, Scanspeed, external Lasers"/>
+                <required name="AdditionalInformation" type="ome.model.core.StringValueList" label="Additional information" help="Additional general Information about the experiment."/>
+            </properties>
+        </type>
+
+        <type id="ome.model.core.RlSpecimen">
+            <properties>
+                <required name="Type" type="string" label=" Specimen Type"  help="Information about the type of the specimen (i.e. compound, culture cell, oocyte, slice, organ, animal) culture cells"/>
+                <required name="Subclassification" type="string" label="Subclassification" help=" when substance: information about the substance: fluorophore, protein, fluorescent protein, other; Information about the cell line: Hek293, CHO, COS7, U2OS, HeLa, otherHek293"/>
+                <required name="Preparation" type="ome.model.core.StringValueList" label="Preparation" help="Link to the standard operation procedure + dates at which the critical steps have been performed.Example: seeded on coverslips on 24.02.2015, transfected on 25.02.2015"/>
+                <required name="Transfection" type="ome.model.core.StringValueList" label="Transfection" help="Array including all details about the transfection procedure  - Link to the SOP  - Date/Time of the transfection  - Type and amount of plasmids used"/>
+                <required name="RNAInjection" type="ome.model.core.StringValueList" label="RNAInjection" help="Array including all details about the injection procedure   - Link to the SOP   - Date/Time of the injection   - Type and amount of RNA injected"/>
+                <required name="Incubation" type="ome.model.core.StringValueList" label="Incubation" help="Array including all details about the incubation procedure   - Link to the SOP   - Date/Time/Duration of the incubation   - Chemicals/drugs/stock solutions used   - conditions during the incubation (temperature, humidity, O2/CO2-content"/>
+                <required name="Fixation" type="ome.model.core.StringValueList" label="Fixation" help="Array including all details about the fixation procedure   - Link to the SOP   - Date/Time of the fixation "/>
+            </properties>
+        </type>
+
+        <type id="ome.model.core.RlExperimentSolutions">
+            <properties>
+                <required name="BathSolution" type="ome.model.core.StringValueList" label="Bath Solution" help="Composition of the solutions used to suspend the cells"/>
+                <required name="PipetteSolution" type="ome.model.core.StringValueList" label="Pipette Solution" help="Composition of the solutions used to fill the patch pipette"/>
+                <required name="BarrelSolution" type="ome.model.core.StringValueList" label="Barrel Solution" help="Composition of the solutions applied via the respective barrels  of the application system"/>
+                <required name="TransfectionSolution" type="ome.model.core.StringValueList" label="Transfection Solution" help="Array including all details about the transfection procedure   - Link to the SOP   - Date/Time of the transfection   - Type and amount of plasmids used."/>
+            </properties>
+        </type>
+
+		<type id="ome.model.core.RlChemicalSubstance">
+            <properties>
+                <required name="UId" type="int"/>
+                <required name="Name" type="string" label="Name" help="Name of the substance"/>
+                <required name="MolecularWeight" type="double" label="Molecular weight" help="Molecular weight of the substance"/>
+                <required name="MolecularFormula" type="string" label="Molecular formula"  help="Formula of the substance"/>
+                <required name="StructuralFormulaLink" type="string" label="Structural formula" help="Link to the structural formula"/>
+                <required name="CASNumber" type="string" label="CAS Number" help="CAS-Number" input_type="weblink" link_type="cas"/>
+                <required name="Distributor" type="string" label="Distributor" help="Name of the distributor from whom the substance was obtained"/>
+                <required name="DistributorProductNumber" type="string" label="Distributor ID"  help="Product number of the distributor"/>
+                <required name="LotNumber" type="string" label="Lot number" help="Lot Number" />
+                <required name="PurityGrade" type="string" label="Purity / Grade" help="Purity or grade of the substance"/>
+                <required name="Verification" type="string" label="Verification" help="Methods used to verify the purity. Links to the result of the tests"/>
+                <required name="ReceivedDate" type="string" label="Received" help="Date, when the substance was received" input_type="date"/>
+                <required name="PrincipleInvestigator" type="string" label="Principle Investigator" help="Names of the PIs involved in the project."/>
+                <required name="AliquotsSentTo" type="string" label="Aliquots sent to" help="List of researchers to whom aliquots have been sent"/>
+				<required name="OwnerId" type="int" label="Owner Id"/>
+				<required name="OwnerGroupId" type="int" label="Owner Group Id"/>
+				<required name="OriginalObjectId" type="int" label="Original Object Id"/>
+				<!--<required name="CreationDateTime" type="string" label="Creation Time" input_type="date"/>-->
+            </properties>
+		</type>
+
+        <type id="ome.model.core.RlProtein">
+            <properties>
+                <required name="UId" type="int"/>
+                <required name="Name" type="string" label="Name" help="Name of the protein"/>
+                <required name="Description" type="string" label="Note / Description" help="Gives a short description of the protein"/>
+                <required name="Organism" type="string" label="Organism"  help="Organism from which the cDNA was created. Examples: Aequoria victoria "/>
+                <required name="Length" type="string" label="Length" help="Length of the original and the actual  protein in number of amino acids"/>
+                <required name="Deletions" type="string" label="Deletions" help="Site and length of deletions"/>
+                <required name="PlasmidId" type="int" label="Plasmid" help="Link to the plasmid data base" input_type="enum" class_type="plasmid"/>
+                <required name="DateOfExpression" type="string" label="Date of expression" help="Date of expression" input_type="date"/>
+                <required name="ExpressionProtocol" type="string" label="Protocol for Expression" help="Contains link to SOP used for the expression of the protein"/>
+                <required name="BacterialStorage" type="string" label="Storage" help="Site where bacteria/yeast are stored "/>
+                <required name="DateOfPurification" type="string" label="Date of purification" help="Date of purification" input_type="date"/>
+                <required name="PurificationProtocol" type="string" label="Protocol for Purification" help="Contains link to SOP used for the purification of the protein"/>
+                <required name="Concentration" type="string" label="Concentration" help="Concentration in mg/ml and/or µmol/l and method used to determine the concentration"/>
+                <required name="Verification" type="string" label="Verification" help="Methods used to verify the identity and purity of the protein(i.e. mass spectroscopy, immunoblotting, PAGE)"/>
+                <required name="AliquotsStorage" type="string" label="Storage" help="Number and volume of aliquots generated and sites, where the aliquots are stored"/>
+                <required name="Distributor" type="string" label="Origin" help="Name of the PI, from whom the protein was obtained"/>
+                <required name="DistributorProductNumber" type="string" label="Origin ID" help="Original name/ID of the protein used in the lab of the distributor"/>
+                <required name="ReceivedDate" type="string" label="Received" help="Date, when the protein was received" input_type="date"/>
+                <required name="PrincipleInvestigator" type="string" label="Principle Investigator" help="Names of the PIs involved in the project."/>
+                <required name="AliquotsSentTo" type="string" label="Aliquots sent to" help="List of researchers to whom aliquots have been sent"/>
+				<required name="OwnerId" type="int" label="Owner Id"/>
+				<required name="OwnerGroupId" type="int" label="Owner Group Id"/>
+				<required name="OriginalObjectId" type="int" label="Original Object Id"/>
+				<!--<required name="CreationDateTime" type="string" label="Creation Time" input_type="date"/>-->
+            </properties>
+		</type>
+
+        <type id="ome.model.core.RlDna" superclass="ome.model.core.RlBaseObject">
+            <properties>
+                <required name="UId" type="int"/>
+                <required name="Name" type="string" label="Name" help="Name of the protein"/>
+                <required name="OwnerId" type="int"/>
+                <required name="OwnerGroupId" type="int"/>
+                <required name="OriginalObjectId" type="int"/>
+                <!--<required name="CreationDateTime" type="string" input_type="date"/>-->
+                <required name="UniqueId" type="string"/>
+                <required name="VectorId" type="string"/>
+                <required name="DateOfAmplification" type="string" label="Date of Amplification" input_type="date"/>
+                <required name="ResultLinkId" type="int"/>
+                <required name="DnaContent" type="string" abel="DNA Content"/>
+                <required name="Storage" type="string"/>
+                <required name="UsedSopKit" type="string" label="Used Sop Kit"/>
+            </properties>
+        </type>
+
+        <type id="ome.model.core.RlRna" superclass="ome.model.core.RlBaseObject">
+            <properties>
+                <required name="UId" type="int"/>
+                <required name="Name" type="string" label="Name" help="Name of the protein"/>
+                <required name="OwnerId" type="int"/>
+                <required name="OwnerGroupId" type="int"/>
+                <required name="OriginalObjectId" type="int"/>
+                <!--<required name="CreationDateTime" type="string" input_type="date"/>-->
+                <required name="UniqueId" type="string"/>
+                <required name="VectorId" type="string"/>
+                <required name="DateOfAmplification" type="string" label="Date of Amplification" input_type="date"/>
+                <required name="ResultLinkId" type="int"/>
+                <required name="DnaContent" type="string" label="DNA Content"/>
+                <required name="Storage" type="string"/>
+                <required name="UsedSopKit" type="string" label="Used Sop Kit"/>
+            </properties>
+        </type>
+
+        <type id="ome.model.core.FileInformation" superclass="ome.model.core.RlBaseObject">
+            <properties>
+                <required name="Size" type="int"/>
+            </properties>
+        </type>
+
+        <type id="ome.model.core.SearchResult">
+            <properties>
+                <required name="UId" type="int"/>
+                <required name="TypeName" type="string"/>
+                <required name="MemberName" type="string"/>
+            </properties>
+        </type>
+
+</types>

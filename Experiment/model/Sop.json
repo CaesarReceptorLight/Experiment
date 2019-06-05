@@ -1,0 +1,83 @@
+{
+	"Basic Information": [{
+		"index": 1,
+		"name": "Unique ID",
+		"key": "UId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Global unique ID of this object."
+	}, {
+		"index": 2,
+		"name": "Unique Name",
+		"key": "Name",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Global unique Name of this object."
+	}, {
+		"index": 3,
+		"name": "Owner ID",
+		"key": "OwnerId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of user who creates this object."
+	}, {
+		"index": 4,
+		"name": "Owner Group ID",
+		"key": "OwnerGroupId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of group of user who creates this object."
+	}, {
+		"index": 5,
+		"name": "Original Object ID",
+		"key": "OriginalObjectId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of source object of this object, if this object is a copy of an existing object."
+	}, {
+		"index": 6,
+		"name": "Child Object IDs",
+		"key": "ChildObjectIds",
+		"isVisible": "False",
+		"type": "omero.model.IntValueListI",
+		"uiType": "freeText",
+		"help": "ID of all child objects, if this object is a container object."
+	}, {
+		"index": 7,
+		"name": "Date and Time of creating",
+		"key": "CreationDateTime",
+		"isVisible": "False",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "date",
+		"help": "Date and Time of creating."
+	}, {
+		"index": 8,
+		"name": "Status",
+		"key": "Status",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Status of this object (active, inactive, ...)"
+	}, {
+		"index": 9,
+		"name": "Description",
+		"key": "Description",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter detailes about this SOP."
+	}, {
+		"index": 10,
+		"name": "SOP",
+		"key": "UsedFileId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "file",
+		"help": "Please upload your SOP file."
+	}]
+}

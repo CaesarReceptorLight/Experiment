@@ -1,0 +1,225 @@
+{% load form_utils %}
+{% load i18n %}
+{% load common_filters %}
+{% load common_tags %}
+
+<script type="text/javascript" src="/static/Experiment/3rdparty/jquery.keyboard.js"></script>
+<script type="text/javascript" src="/static/Experiment/3rdparty/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet" href="/static/Experiment/css/keyboard.css" type="text/css" />
+<link rel="stylesheet" href="/static/Experiment/css/jquery.datetimepicker.css" type="text/css" />
+
+
+
+<script type="text/javascript">
+
+        $(document).ready(function(){
+
+            $('.datetimepicker').datetimepicker({
+                format:'Y-m-d H:i:s'
+            });
+
+            $('.datepicker').datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+
+            $('.choices_list').on('change', function(event) {
+                event.preventDefault();
+                var selected_textarea = $(this).closest('div').find('textarea')[0]
+                selected_textarea.value = selected_textarea.value  + ' ' + '<<' + this.value + '>>';
+            });
+
+            $('.file_input').on('change', function(event) {
+                event.preventDefault();
+                var selected_textarea = $(this).closest('div').find('textarea')[0];
+                for (var i=0; i< this.files.length; i++) {
+                    selected_textarea.value = selected_textarea.value  + ' ' + '<<File:-1:' + this.files[i].name + '>>';
+                }
+            });
+
+            $("#id_ReferencePaperPubMedId").bind("change", function(e){
+                var pubmedid = $("#id_ReferencePaperPubMedId").val();
+                $.getJSON("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id=" + pubmedid)
+                    .done(function(data){
+                        if (!data.result[pubmedid].error) {
+                            if (data.result[pubmedid].articleids[2].idtype == 'doi') {
+                                $("#id_ReferencePaperDOI").val(data.result[pubmedid].articleids[2].value);
+                            }
+                            var citation = "";
+                            for(author in data.result[pubmedid].authors){
+                                citation+=data.result[pubmedid].authors[author].name+', ';
+                            }
+                            citation+=' \"'+data.result[pubmedid].title+'\" '+data.result[pubmedid].fulljournalname+' '+ data.result[pubmedid].volume+'.'+ data.result[pubmedid].issue+' ('+data.result[pubmedid].pubdate+'): '+data.result[pubmedid].pages+'.';
+                            $("#id_ReferencePaper").val(citation);
+                        }
+                });
+            });
+
+            $("#id_Type").bind("change", function(e){
+                var specimen_type = $("#id_Type").val();
+                $.getJSON("https://www.ebi.ac.uk/ols/api/search?q=" + specimen_type)
+                    .done(function(data){
+                });
+            });
+
+            $("#id_CASNumber").bind("change", function(e) {
+                var cas_num = $("#id_CASNumber").val();
+                $.getJSON("https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/"+cas_num +"/xrefs/RN/JSON")
+                    .done(function(data){
+                        pubchemid = data.InformationList.Information[0].CID
+                        $.getJSON("https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/" + pubchemid + "/property/MolecularFormula,MolecularWeight/JSON")
+                            .done(function(pubchemdata){
+                                $("#id_MolecularFormula_0").val(pubchemdata.PropertyTable.Properties[0].MolecularFormula);
+                                $("#id_MolecularWeight").val(pubchemdata.PropertyTable.Properties[0].MolecularWeight);
+                        });
+                        var structural_formula_link = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/" + pubchemid + "/PNG";
+                        $('#id_StructuralFormulaLink_0').val(structural_formula_link);
+                        $('#StructuralFormulaLink').append('<img src=' + structural_formula_link + '/>');
+
+                });
+            });
+
+
+            var getSK = function(target_input) {
+                return $('#' + target_input).keyboard({
+                    layout: 'custom',
+                    customLayout: {
+                        'normal' : [
+                            // "n(a):title_or_tooltip"; n = new key, (a) = actual key, ":label" = title_or_tooltip (use an underscore "_" in place of a space " ")
+                            '\u03b1 \u25B3 \u03b3 \u03b4 \u03b5 \u03b6 \u03b7', // lower case Greek
+                            '\u25B3  \u23EA  \u23E9  \u00B0  \u03BC  \u03C0',
+                            '{shift} {accept} {cancel}'
+                        ],
+                        'shift' : [
+                            '\u21D2 \u2192 	\u21D0 \u2190 \u21D4 \u0396 \u2217', // upper case Greek
+                            '{shift} {accept} {cancel}'
+                        ]
+                    },
+                    openOn : null,
+                    autoAccept : true,
+                    autoAcceptOnEsc : true,
+                    usePreview: false // no preveiw
+                });
+            };
+
+
+
+            $('.keyboard-opener').click(function(event){
+                event.preventDefault();
+                var target_input = $(event.target).parent().children('.scientifickeyboard').attr('id');
+                $('#' + target_input).keyboard({
+                    layout: 'custom',
+                    customLayout: {
+                        'normal' : [
+                            // "n(a):title_or_tooltip"; n = new key, (a) = actual key, ":label" = title_or_tooltip (use an underscore "_" in place of a space " ")
+                            '\u03b1 \u25B3 \u03b3 \u03b4 \u03b5 \u03b6 \u03b7 \u25B3 \u23EA \u23E9', // lower case Greek
+                            ' \u00B0  \u03BC  \u03C0 \u21D2 \u2192 \u21D0 \u2190 \u21D4 \u2217', // upper case Greek
+                            '{shift} {accept} {cancel}'
+                        ],
+                        'shift' : [
+                            '\u2080 \u2081 \u2082 \u2083 \u2084 \u2085 \u2086 \u2087 \u2088 \u2089',
+                            '\u2070 \u00B9 \u00B2 \u00B3 \u2074 \u2075 \u2076 \u2077 \u2078 \u2079',
+                            '{shift} {accept} {cancel}'
+                        ]
+                    },
+                    openOn : null,
+                    autoAccept : true,
+                    autoAcceptOnEsc : true,
+                    appendLocally: true,
+                    usePreview: false // no preveiw
+                }).getkeyboard().reveal();
+                <!--getSK(target_input).getkeyboard().reveal();-->
+                <!--var kb = getSK(target_input).getkeyboard();-->
+                <!--if ( kb.isOpen ) {-->
+                    <!--kb.close();-->
+                <!--} else {-->
+                    <!--kb.reveal();-->
+                <!--}-->
+            });
+
+            function showfield(name){
+                debugger;
+                if(name=='Other') {
+                    document.getElementById('div1').innerHTML='Other: <input type="text" name="other" />';
+                }
+                else {
+                    document.getElementById('div1').innerHTML='';
+                }
+            }
+
+
+
+
+
+        });
+</script>
+<div class="edit_form tabContent">
+<form action="{% url 'save_input_data' %}?input_type={{input_type}}&id={{input_id}}&dataset={{dataset}}&action={{action}}" method="post" enctype="multipart/form-data" target="_self" class="form_input">
+<div class="standard_form">{% csrf_token %}
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><h1>{{ message }}</h1></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <input class="submit_button" type="submit" name="update_input" value="Save">
+        {% for fieldset in form.fieldsets %}
+            <div class="fieldset_section">
+                {% if fieldset.legend %}
+                    <div class="label_section"><h1><span class="section_label">{{fieldset.legend}}</span></h1></div>
+                {% endif %}
+                <ul>
+                {% for field in fieldset %}
+                    {% if field.is_hidden %}
+                        {{ field }}
+                    {% else %}
+                        <div class="field_group_section">
+                            <div id="{{field.name}}" class="form_field">
+                                {% if field.field.input_type == 'richText' %}
+                                    <select id="dropdown_{{field.name}}" class="choices_list" onchange="showfield(this.options[this.selectedIndex].value)">
+                                        <option hidden>Please select</option>
+                                        {% for type, value in choices.items %}
+                                            <optgroup label="{{type}}">
+                                            {% for key, val in value.items %}
+                                                <option value="{{type}}:{{key}}:{{val}}">{{val}}</option>
+                                            {% endfor %}
+                                            </optgroup>
+                                        {% endfor %}
+                                    </select>
+                                    <!--<input type="file" id="file_{{field.name}}" class="file_input">-->
+                                {% endif %}
+                                <li class="receptor_form form_element_label">{{ field.label_tag }}
+                                    {% if field.help_text %}
+                                        <img src="/static/webclient/image/info16.png" title="{{field.help_text}}">
+                                    {% endif %}
+                                    {{ field }}
+                                    {% if field.field.input_type == 'richText' or field.field.input_type == 'freeText' %}
+                                        <img class="keyboard-opener" title="Click to open the virtual keyboard" src="/static/Experiment/image/keyboard.png">
+                                    {% endif %}
+                                </li>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+</form>
+</div>

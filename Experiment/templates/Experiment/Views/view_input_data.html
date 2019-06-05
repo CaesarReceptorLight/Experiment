@@ -1,0 +1,89 @@
+{% load rl_filters %}
+<script type="text/javascript">
+
+        $(document).ready(function() {
+
+            var tabs = $(".tabs-container").tabs();
+            var tabCounter = tabs.find('ul').first().children().length;
+
+
+            // Open View Tab for Viewing
+            $('.view_tab').click( function(event){
+                event.preventDefault();
+                var url = $(this).attr("href");
+                var ul = tabs.find( "ul" );
+                $( '<li class="rl_tabs"><a href="' + url + '"><span class="rl_tab_header">View</span></a><button type="button" class="ui-button ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close ui-closable-tab" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></li>' ).appendTo( ul );
+                tabs.tabs( "refresh" );
+                tabs.tabs( "option", "active", -1 );
+
+            });
+
+        });
+
+</script>
+<div class="view_input tabContent">
+{% for sec in sections %}
+    {% for section, data in InputData.items %}
+        {% if sec == section %}
+            <h1><span class="section_label">{{sec}}</span></h1>
+            <div class="receptor_form">
+                <div>
+                    <table class="experiment_table">
+
+                        {% for val in data %}
+                            {% if val.isVisible == 'True' %}
+                                <tr>
+                                    <td class="element_label"><label for="{{val.key}}">{{ val.name }}: </label></td>
+
+                                    {% if val.uiType == 'weblink' and val.value %}
+                                        {% if val.linkType == 'doi' %}
+                                            <td class="element_value"><p><a href="https://dx.doi.org/{{val.value}}" target="_blank">{{val.value}}</a></p></td>
+                                        {% elif val.linkType == 'pubmed' %}
+                                            <td class="element_value"><p><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={{val.value}}" target="_blank">{{val.value}}</a></p></td>
+                                        {% elif val.linkType == 'ncbiNuccore' %}
+                                            <td class="element_value"><p><a href="http://www.ncbi.nlm.nih.gov/nuccore/?term={{val.value}}" target="_blank">{{val.value}}</a></p></td>
+                                        {% elif val.linkType == 'cas' %}
+                                            <td class="element_value"><p><a href="http://chem.sis.nlm.nih.gov/chemidplus/rn/{{val.value}}" target="_blank">{{val.value}}</a></p></td>
+                                        {% else %}
+                                            <td class="element_value"><p><a href="{{val.value}}" target="_blank">{{val.value}}</a></p></td>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if val.uiType == 'richText' %}
+                                            <td class="element_value"><p>
+                                                {% autoescape off %}
+                                                    {{ val.value | display_richtext}}
+                                                {% endautoescape %}
+                                            </p>
+                                            </td>
+                                        {% elif val.uiType == 'file' %}
+                                            <td>
+                                                <p><a href="{% url 'download_file' %}?fileId={{val.fileId}}">{{val.value}}</a></p>
+                                            </td>
+                                        {% elif val.uiType == 'multiplefiles' %}
+                                            <td>
+                                            {% for fileId, filename in val.value.items %}
+                                                <h1>{{forloop.counter}}.
+                                                    <a href="{% url 'download_file' %}?fileId={{fileId}}">{{filename}}</a>
+                                                </h1>
+                                            {% endfor %}
+                                            </td>
+                                        {% else %}
+                                        <td class="element_value"><p>{{ val.value }}</p>
+                                            {% if val.unit and val.value %}
+                                                <p>{{val.unit}}</p>
+                                            {% endif %}
+                                        </td>
+                                        {% endif %}
+                                    {% endif %}
+                                </tr>
+
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <br><hr>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+</div>

@@ -1,0 +1,24 @@
+{% load form_utils %}
+{% load i18n %}
+{% load common_filters %}
+{% load common_tags %}
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        var tabs = $(".searchtabs-container").tabs();
+        var tabCounter = tabs.find('ul').first().children().length;
+    });
+</script>
+
+<div id="search_exp_materials">
+    <div class="searchtabs-container" class="multitabdialog">
+        <ul class="tabs-menu">
+            <li class="rl_tabs"><a href="{% url 'search_experiment' %}"><span class="rl_tab_header">Search</span></a></li>
+        </ul>
+    </div>
+    <div class="tab"></div>
+</div>
+<div class="delete_dialog" title="Delete"></div>
+
+

@@ -1,0 +1,195 @@
+{% load form_utils %}
+{% load i18n %}
+{% load common_filters %}
+{% load common_tags %}
+
+<script type="text/javascript" src="{% static '3rdparty/jquery.tablesorter-2.0.3/jquery.tablesorter.js' %}"></script>
+<script type="text/javascript" src="{% static '3rdparty/jquery.quicksearch-1.0.js' %}"></script>
+<script type="text/javascript">
+
+        $(document).ready(function() {
+
+            var tabs = $(".tabs-container").tabs();
+            var tabCounter = tabs.find('ul').first().children().length;
+
+
+            $("table#dataTable tbody tr").click(function(event) {
+                <!--alert(event);-->
+            });
+
+            // plugin to handle drag-select of images
+            $("table#dataTable tbody").selectable({
+                filter: 'tr',
+                distance: 2,
+                stop: function(){
+                    var selected = $('tr.ui-selected', this);
+
+                },
+                start: function(){
+                }
+            });
+
+
+            $("#dataTable").tablesorter( {sortList: [[1,0]]} );
+
+            $('input#id_search').quicksearch('table#dataTable tbody tr', {
+                'delay': 300,
+                'loader': 'span.loading'
+            });
+
+
+            // Open Edit Tab for editing
+            $('.edit_tab').click( function(event){
+                event.preventDefault();
+                var url = $(this).attr("href");
+                var ul = tabs.find( "ul" );
+                $( '<li class="rl_tabs"><a href="' + url + '"><span class="rl_tab_header">Edit</span></a><button type="button" class="ui-button ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close ui-closable-tab" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></li>' ).appendTo( ul );
+                tabs.tabs( "refresh" );
+                tabs.tabs( "option", "active", -1 );
+            });
+
+
+            // Open View Tab for Viewing
+            $('.view_tab').click( function(event){
+                event.preventDefault();
+                var url = $(this).attr("href");
+                var ul = tabs.find( "ul" );
+                $( '<li class="rl_tabs"><a href="' + url + '"><span class="rl_tab_header">View</span></a><button type="button" class="ui-button ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close ui-closable-tab" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></li>' ).appendTo( ul );
+                tabs.tabs( "refresh" );
+                tabs.tabs( "option", "active", -1 );
+
+            });
+
+            // Open View Tab for Viewing
+            $('.my_proposals_tab').click( function(event){
+                event.preventDefault();
+                var url = $(this).attr("href");
+                var ul = tabs.find( "ul" );
+                $( '<li class="rl_tabs"><a href="' + url + '"><span class="rl_tab_header">My Proposals</span></a><button type="button" class="ui-button ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close ui-closable-tab" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></li>' ).appendTo( ul );
+                tabs.tabs( "refresh" );
+                tabs.tabs( "option", "active", -1 );
+
+            });
+
+            // Open View Tab for Viewing
+            $('.proposals_on_mine_tab').click( function(event){
+                event.preventDefault();
+                var url = $(this).attr("href");
+                var ul = tabs.find( "ul" );
+                $( '<li class="rl_tabs"><a href="' + url + '"><span class="rl_tab_header">Proposals on Mine</span></a><button type="button" class="ui-button ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close ui-closable-tab" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></li>' ).appendTo( ul );
+                tabs.tabs( "refresh" );
+                tabs.tabs( "option", "active", -1 );
+
+            });
+
+
+            // Open History Tab for History of Experiment and Material data
+            $('.history_tab').click( function(event){
+                event.preventDefault();
+                var url = $(this).attr("href");
+                var ul = tabs.find( "ul" );
+                $( '<li class="rl_tabs"><a href="' + url + '"><span class="rl_tab_header">History</span></a><button type="button" class="ui-button ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close ui-closable-tab" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></li>' ).appendTo( ul );
+                tabs.tabs( "refresh" );
+                tabs.tabs( "option", "active", -1 );
+
+            });
+
+            //Actions on delete
+            delete_dialog_options = {
+                autoOpen: false,
+                resizable: false,
+                height: 320,
+                width: 380,
+                modal: true,
+                buttons: {
+                    "Yes": function() {
+                        // simply submit the form (AJAX handling set-up above)
+                        var url = $(this).data('url');
+                        $.post(url, function(data) {
+                        }, 'html');
+                        $( this ).dialog( "close" );
+                        var current_index = tabs.tabs("option","active");
+                        tabs.tabs('load',current_index);
+                        tabs.tabs( "refresh" );
+
+                    },
+                    "No": function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            }
+
+            $('.delete_tab').click(function(event) {
+                event.preventDefault();
+                var url = $(this).attr('href');
+                $(".delete_dialog").data('url', url).dialog(delete_dialog_options).dialog("open");
+                // load form via AJAX...
+                $(".delete_dialog").html('').load(url);
+                tabs.tabs( "refresh" );
+                return false;
+            });
+
+            $('.delete_dialog').ajaxForm({
+                success: function(data) {
+                    $(".delete_dialog").dialog(delete_dialog_options).dialog( "close" );      // hide in case it was submitted via 'Enter'
+                }
+            });
+
+            tabs.on( "click", ".ui-closable-tab", function() {
+                var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
+                $( "#" + panelId ).remove();
+                tabs.tabs( "refresh" );
+            });
+
+        });
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="{% static 'webgateway/css/ome.table.css' %}"/>
+<div id="fragment-1" class="tabContent">
+    <div>
+        <div class="header_class">{{input_type}}</div>
+        <div class="header_class">
+            <a href="{% url 'get_proposals_data' %}?input_type={{input_type}}&id={{data.id}}&dataset={{dataset}}&flag=1" class="my_proposals_tab">My Proposals</a>
+        </div>
+        <div class="header_class">
+            <a href="{% url 'get_proposals_data' %}?input_type={{input_type}}&id={{data.id}}&dataset={{dataset}}&flag=2" class="proposals_on_mine_tab">Proposals on Mine</a>
+        </div>
+    </div>
+    <div id="list_all_table">
+        <div class="clear"> </div>
+        <div>
+            {% if experiment_materials %}
+                <table id="dataTable" class="rl_dataTable tablesorter">
+                    <thead>
+                        <tr>
+                            <th class="table_desc">Name</th>
+                            <th class="table_images">Owner</th>
+                            <th class="table_desc">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in experiment_materials %}
+                        <tr>
+                            <th><a href="{% url 'view_input_data' %}?input_type={{input_type}}&id={{data.id}}" id="view_tab-{{data.id}}" class="view_tab">{{data.name}}</a><span></span></th>
+                            <th>{{data.ownername}}</th>
+                            <th>
+                                <a href="{% url 'print_input_data' %}?input_type={{input_type}}&id={{data.id}}" id="print_tab-{{data.id}}" class="print_tab">Print</a>
+                                <a href="{% url 'get_history_data' %}?input_type={{input_type}}&id={{data.id}}" id="history_tab-{{data.id}}" class="history_tab">History</a>
+                                {% if data.access_right > 2 %}
+                                    <a href="{% url 'save_input_data' %}?input_type={{input_type}}&id={{data.id}}&dataset={{dataset}}" id="edit_tab-{{data.id}}" class="edit_tab">Edit</a>
+                                    <a id="deleteExperimentButton" href="{% url 'delete_input_data'%}?input_type={{input_type}}&id={{data.id}}" class="delete_tab" title="Delete">Delete</a>
+                                {% elif data.access_right >= 2 %}
+                                    <a href="{% url 'save_input_data' %}?input_type={{input_type}}&id={{data.id}}&dataset={{dataset}}&action=propose" id="propose_tab-{{data.id}}" class="edit_tab">Propose</a>
+                                {% endif %}
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div><h1>No Data Available</h1></div>
+            {% endif %}
+        </div>
+    </div>
+</div>

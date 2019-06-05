@@ -1,0 +1,111 @@
+{% load form_utils %}
+{% load i18n %}
+{% load common_filters %}
+{% load common_tags %}
+
+<script type="text/javascript" src="{% static '3rdparty/jquery.tablesorter-2.0.3/jquery.tablesorter.js' %}"></script>
+<script type="text/javascript" src="{% static '3rdparty/jquery.quicksearch-1.0.js' %}"></script>
+<script type="text/javascript">
+
+        $(document).ready(function() {
+
+            var tabs = $(".tabs-container").tabs();
+            var tabCounter = tabs.find('ul').first().children().length;
+
+            $("table#dataTable tbody tr").click(function(event) {
+                <!--alert(event);-->
+            });
+
+            // plugin to handle drag-select of images
+            $("table#dataTable tbody").selectable({
+                filter: 'tr',
+                distance: 2,
+                stop: function(){
+                    var selected = $('tr.ui-selected', this);
+
+                },
+                start: function(){
+                }
+            });
+
+
+            $("#dataTable").tablesorter( {sortList: [[1,0]]} );
+
+            $('input#id_search').quicksearch('table#dataTable tbody tr', {
+                'delay': 300,
+                'loader': 'span.loading'
+            });
+
+            // Open View Tab for Viewing
+            $('.view_tab').click( function(event){
+                event.preventDefault();
+                var url = $(this).attr("href");
+                var ul = tabs.find( "ul" );
+                $( '<li class="rl_tabs"><a href="' + url + '"><span class="rl_tab_header">View</span></a><button type="button" class="ui-button ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close ui-closable-tab" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></li>' ).appendTo( ul );
+                tabs.tabs( "refresh" );
+                tabs.tabs( "option", "active", -1 );
+
+            });
+        });
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'webgateway/css/ome.table.css' %}"/>
+<div id="fragment-1" class="tabContent">
+
+    <div id="list_all_table">
+        <div class="clear"> </div>
+        {% if flag == 1 %}
+            <div class="header_class">My Proposals</div>
+        {% elif flag == 2 %}
+            <div class="header_class">Proposals on Mine</div>
+        {% endif %}
+        <div class="clear"> </div>
+        <div>
+            <table id="dataTableProposedOnMine" class="rl_dataTable tablesorter">
+                <thead>
+                    <tr>
+                        <th class="table_desc">Name</th>
+                        <th class="table_images">Owner</th>
+                        {%if flag == 2 %}
+                            <th class="table_desc">Actions</th>
+                        {% endif %}
+                        <th class="table_desc">Status</th>
+                        <th class="table_desc">Proposed on</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if proposals %}
+                        {% for data in proposals %}
+                        <tr>
+                            <th><a href="{% url 'view_input_data' %}?input_type={{input_type}}&id={{data.id}}" class="rl_tabs view_tab">{{data.name}}</a><span></span></th>
+                            <th>{{data.ownername}}</th>
+                            {% if flag == 2 %}
+                                {% if data.access_right >= 2  and data.status == 2 %}
+                                    <th>
+                                    <form action="{% url 'get_proposals_data' %}?input_type={{input_type}}&id={{data.id}}&dataset={{dataset}}" method="post" enctype="multipart/form-data" target="_self" class="form_input">
+                                        {% csrf_token %}
+                                        <select name="proposal_action" class="action_list">
+                                            <option selected disabled>Actions</option>
+                                            <option value="1:{{data.id}}">Accept</option>
+                                            <option value="2:{{data.id}}">Reject</option>
+                                        </select>
+                                        <input type="submit" value="Select">
+                                    </form>
+                                    </th>
+                                {% else %}
+                                    <th>-</th>
+                                {% endif %}
+                            {% endif %}
+                            <th class="table_desc">{{data.status_text}}</th>
+                            <th><a href="{% url 'view_input_data' %}?input_type={{input_type}}&id={{data.originalid}}" class="rl_tabs view_tab">{{data.name}}</a><span></span></th>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr><th>No Data available</th></tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

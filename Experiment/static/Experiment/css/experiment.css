@@ -1,0 +1,224 @@
+#receptor_experiment_tab td.element_value {
+    white-space: normal;
+}
+
+.header_class {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.tabs-menu {
+    height: 70px;
+    float: left;
+    clear: both;
+}
+
+.tabs-menu li {
+    height: 50px;
+    width: 80px;
+    line-height: 30px;
+    float: left;
+    margin-right: 10px;
+    background-color: #ccc;
+    border-top: 1px solid #d4d4d1;
+    border-right: 1px solid #d4d4d1;
+    border-left: 1px solid #d4d4d1;
+}
+
+.tabs-menu li.current {
+    position: relative;
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
+    z-index: 5;
+}
+
+.tabs-menu li a {
+    padding: 10px;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+}
+
+.tabs-menu .current a {
+    color: #2e7da3;
+}
+
+.tab {
+    padding-top: 80px;
+}
+
+.tabContent {
+    width: 660px;
+    padding-top: 80px;
+    padding-left: 20px;
+}
+
+#tab-1 {
+ display: block;
+}
+
+#list_all_table {
+    width: 1000px;
+    max-width: 1050px;
+}
+
+.search_form.tabContent {
+    padding-top: 50px;
+    padding-left: 100px;
+}
+
+div#searching {
+    padding-left: 100px;
+}
+
+.rl_dataTable {
+    border: 2.5px solid #3a344a;
+}
+
+.rl_dataTable th.header {
+    font-size: 1.8em;
+    color: #795548;
+}
+
+.rl_dataTable th {
+    padding: 10px !important;
+    font-size: 1.3em;
+    color: #3E2723 !important;
+}
+
+.form_field {
+    padding-left: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+
+.choices_list {
+    margin-left: 99%;
+    width: 25%;
+}
+
+.file_input {
+    margin-left: 99%;
+}
+
+img.keyboard-opener {
+    width: 50px;
+}
+
+a#experiment_details {
+    bottom: 10px;
+}
+
+.version-results {
+    padding-top: 20px;
+    width: 150%;
+}
+
+.section_label {
+    font-size: 2.2em !important;
+    color: #2a1511;
+}
+
+.element_label {
+    color: #4b3f3c;
+    font-size: 1.4em;
+    width: 30%;
+}
+
+.element_value {
+    font-size: 1.2em;
+}
+
+.form_input {
+    width: 125%;
+}
+
+.form_element_label {
+    color: #4b3f3c;
+    font-size: 1.4em;
+}
+
+
+li.rl_tabs {
+    background: #8f8887;
+    width: 140px;
+}
+
+.ui-dialog-title#exp_material_dialog {
+    font-size: 2em !important;
+    color: #301916 !important;
+}
+
+.ui-dialog .ui-dialog-content#exp_material_dialog {
+    background: white;
+}
+
+table.experiment_table {
+    width: 150%;
+}
+
+.exp_element_label {
+    width: 45%;
+}
+
+span.rl_tab_header {
+    font-size: 1.4em;
+    padding-top: 5px;
+}
+
+.CodeMirror pre {
+    font-size: 1.5em;
+    padding: 4px 4px;
+}
+
+#block_container {
+    text-align: center;
+}
+
+.instance_class {
+    display: inline-block;
+}
+
+.property_class {
+    display: inline-block;
+}
+
+.experiment_attributes {
+    width: 200px;
+    height: 100px;
+    background: #48d1cc;
+    margin-top: 10%;
+    margin-left: 10%;
+    font-size: 2em;
+    border-radius: 10px;
+}
+
+.oval {
+    width: 200px;
+    height: 100px;
+    background: #009688;
+    -moz-border-radius: 100px / 50px;
+    -webkit-border-radius: 100px / 50px;
+    border-radius: 100px / 50px;
+}
+
+
+/* Component containers
+----------------------------------*/
+
+.ui-widget.ui-autocomplete {
+	font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
+	font-size: 1.1em/*{fsDefault}*/;
+}
+
+.ui-widget-content.ui-autocomplete {
+    border: 1px solid #aaaaaa/*{borderColorContent}*/;
+    background: #ffffff/*{bgColorContent}*/ ;
+    color: #222222/*{fcContent}*/;
+}
+.ui-widget-content.ui-autocomplete a {
+    color: #222222/*{fcContent}*/;
+}

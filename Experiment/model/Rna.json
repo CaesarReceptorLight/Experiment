@@ -1,0 +1,164 @@
+{
+	"Basic Information": [{
+		"index": 1,
+		"name": "Unique ID",
+		"key": "UId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Global unique ID of this object."
+	}, {
+		"index": 2,
+		"name": "Unique Name",
+		"key": "Name",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Global unique Name of this object."
+	}, {
+		"index": 3,
+		"name": "Owner ID",
+		"key": "OwnerId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of user who creates this object."
+	}, {
+		"index": 4,
+		"name": "Owner Group ID",
+		"key": "OwnerGroupId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of group of user who creates this object."
+	}, {
+		"index": 5,
+		"name": "Original Object ID",
+		"key": "OriginalObjectId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of source object of this object, if this object is a copy of an existing object."
+	}, {
+		"index": 6,
+		"name": "Child Object IDs",
+		"key": "ChildObjectIds",
+		"isVisible": "False",
+		"type": "omero.model.IntValueListI",
+		"uiType": "freeText",
+		"help": "ID of all child objects, if this object is a container object."
+	}, {
+		"index": 7,
+		"name": "Date and Time of creating",
+		"key": "CreationDateTime",
+		"isVisible": "False",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "date",
+		"help": "Date and Time of creating."
+	}, {
+		"index": 8,
+		"name": "Status",
+		"key": "Status",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Status of this object (active, inactive, ...)"
+	}, {
+		"index": 9,
+		"name": "ID",
+		"key": "UniqueId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter a unique identifier used in your lab."
+	}, {
+		"index": 10,
+		"name": "Description",
+		"key": "Description",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter detailes about this rna."
+	}, {
+		"index": 11,
+		"name": "Additional Files",
+		"key": "LinkedFileIds",
+		"isVisible": "True",
+		"type": "omero.model.IntValueListI",
+		"uiType": "multiplefiles",
+		"help": "Please enter additional files."
+	}, {
+		"index": 12,
+		"name": "Used Vector / Plasmid",
+		"key": "UsedVectorPlasmid",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter the name of the used vector / plasmid for the RNA amplification. Include links to the respective plasmid/vector database."
+	}, {
+		"index": 13,
+		"name": "Preparation",
+		"key": "Preparation",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please provide information about the preparation procedure (including names of the used kits). Upload the respective SOP if possible."
+	}, {
+		"index": 14,
+		"name": "Linearization Site",
+		"key": "LinearizationSite",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the restriction enzymes which were used for the linearization of the plasmid."
+	}, {
+		"index": 15,
+		"name": "Preparation Result",
+		"key": "PreparationResult",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please provide information about the results of the preparation."
+	}, {
+		"index": 16,
+		"name": "Concentration",
+		"key": "Concentration",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the concentration of the plasmid and the method used to determine the concentration."
+	}, {
+		"index": 17,
+		"name": "Storage",
+		"key": "Storage",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the site where the sample is stored, Example: Room 105, -80°C freezer, Rack A3, Box5, Slot 20"
+	}],
+	"Additional Information": [{
+		"index": 18,
+		"name": "Contact Person",
+		"key": "ContactPerson",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the names and departments of the contact persons or principal investigators who are responsible for this entry and should be contacted for further questions."
+	}, {
+		"index": 19,
+		"name": "Aliquots Sent To",
+		"key": "AliquotsSentTo",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter when and to whom aliquots have been sent."
+	}, {
+		"index": 20,
+		"name": "Notes",
+		"key": "Notes",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter and link all further information which is important to the rna."
+	}]
+}

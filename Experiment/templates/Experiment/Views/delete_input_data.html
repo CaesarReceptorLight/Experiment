@@ -1,0 +1,13 @@
+{% load form_utils %}
+{% load i18n %}
+{% load common_filters %}
+{% load common_tags %}
+
+<div class="standard_form">{% csrf_token %}
+    {% if message %}
+        <h1>{{message}}</h1>
+    {% else %}
+        <h1>Do you want to continue to delete?</h1>
+    {% endif %}
+
+</div>

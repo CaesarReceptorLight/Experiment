@@ -1,0 +1,280 @@
+{
+	"Basic Information": [{
+		"index": 1,
+		"name": "Unique ID",
+		"key": "UId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Global unique ID of this object."
+	}, {
+		"index": 2,
+		"name": "Unique Name",
+		"key": "Name",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Global unique Name of this object."
+	}, {
+		"index": 3,
+		"name": "Owner ID",
+		"key": "OwnerId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of user who creates this object."
+	}, {
+		"index": 4,
+		"name": "Owner Group ID",
+		"key": "OwnerGroupId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of group of user who creates this object."
+	}, {
+		"index": 5,
+		"name": "Original Object ID",
+		"key": "OriginalObjectId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of source object of this object, if this object is a copy of an existing object."
+	}, {
+		"index": 6,
+		"name": "Child Object IDs",
+		"key": "ChildObjectIds",
+		"isVisible": "False",
+		"type": "omero.model.IntValueListI",
+		"uiType": "freeText",
+		"help": "ID of all child objects, if this object is a container object."
+	}, {
+		"index": 7,
+		"name": "Date and Time of creating",
+		"key": "CreationDateTime",
+		"isVisible": "False",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "date",
+		"help": "Date and Time of creating."
+	}, {
+		"index": 8,
+		"name": "Status",
+		"key": "Status",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Status of this object (active, inactive, ...)"
+	}, {
+		"index": 9,
+		"name": "ID",
+		"key": "UniqueId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter a unique identifier used in your lab."
+	}, {
+		"index": 10,
+		"name": "Description",
+		"key": "Description",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter detailes about this vector."
+	}, {
+		"index": 11,
+		"name": "Vector-Map with Key Elements",
+		"key": "LinkedFileIds",
+		"isVisible": "True",
+		"type": "omero.model.IntValueListI",
+		"uiType": "multiplefiles",
+		"help": "Please enter a link to the vector map or attach a file (pdf, gb) which includes the vector-map with all key elements."
+	}, {
+		"index": 12,
+		"name": "Vector Size",
+		"key": "Size",
+		"isVisible": "True",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Please enter the size of the vector in base pairs and of the tag (if present), Example: pcDNA3.1: 5423 bp mTFP1: 711 bp"
+	}],
+	"Expression and Amplification": [{
+		"index": 13,
+		"name": "Expression System",
+		"key": "ExpressionSystem",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter information about the expression system you used."
+	}, {
+		"index": 14,
+		"name": "Bacterial Strain",
+		"key": "BacterialStrain",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the bacterial  strain used for transformation, Example: E. coli HB101"
+	}, {
+		"index": 15,
+		"name": "High or Low Copy",
+		"key": "HighLowCopy",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please choose the amplification level of the vector."
+	}, {
+		"index": 16,
+		"name": "Bacterial Resistance",
+		"key": "BacterialResistance",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the bacterial resistances which can be used to select the transformed bacteria."
+	}, {
+		"index": 17,
+		"name": "Growth Conditions",
+		"key": "GrowthConditions",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the growth conditions of the transformed bacteria or include the link to the SOP. Example: [Link to medium], incubation overnight at 37°C"
+	}, {
+		"index": 18,
+		"name": "Stable Cell Selection",
+		"key": "StableCallSelection",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the eukaryotic cell resistance which can be used to select transfected cells."
+	}],
+	"Information about the Origin": [{
+		"index": 19,
+		"name": "Reference PubMed ID",
+		"key": "ReferencePaperPubMedId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "weblink",
+		"linkType": "pubmed",
+		"help": "Please enter the PubMed ID of the paper."
+	}, {
+		"index": 20,
+		"name": "Reference Paper",
+		"key": "ReferencePaper",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the citation of the paper where the vector was described."
+	}, {
+		"index": 21,
+		"name": "Reference DOI",
+		"key": "ReferencePaperDOI",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "weblink",
+		"linkType": "doi",
+		"help": "Please enter the digital object identifier (doi) of the paper."
+	}, {
+		"index": 22,
+		"name": "Origin",
+		"key": "Origin",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the name of the creator of the vector and/or a link to the webpage."
+	}, {
+		"index": 23,
+		"name": "Origin ID",
+		"key": "OriginId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the original name or ID of the vector assigned by its creator."
+	}, {
+		"index": 24,
+		"name": "Distributor",
+		"key": "Distributor",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the name of the principal investigator / distributor, from whom the vector was obtained."
+	}, {
+		"index": 25,
+		"name": "Distributor Product ID",
+		"key": "DistributorProductId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the original name or ID of the vector used in the lab from whom the plasmid was received."
+	}, {
+		"index": 26,
+		"name": "Date of Receive",
+		"key": "ReceivedDate",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "date",
+		"help": "Please enter the date, when the plasmid was received."
+	}, {
+		"index": 27,
+		"name": "Verification",
+		"key": "Verification",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please indicate if the sequence of the vector has been verified."
+	}, {
+		"index": 28,
+		"name": "Verification Link",
+		"key": "VerificationLink",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter a link or attach a file with the original sequence data and the analysis of sequencing."
+	}, {
+		"index": 29,
+		"name": "Concentration of the Vector",
+		"key": "Concentration",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "Textarea",
+		"help": "Please enter the concentration of the vector and the method used to determine the concentration."
+	}, {
+		"index": 30,
+		"name": "Storage",
+		"key": "PlasmidStorage",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the site where the original plasmid is stored, Example: Room 105, -80°C freezer, Rack A3, Box5, Slot 20"
+	}],
+	"Additional Information": [{
+		"index": 31,
+		"name": "Contact Person",
+		"key": "ContactPerson",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the names and departments of the contact persons or principal investigators who are responsible for this entry and should be contacted for further questions."
+	}, {
+		"index": 32,
+		"name": "Protected Sequences / MTAs",
+		"key": "ProteinSequences",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter information about license agreements which have to be complied with or upload files with material transfer documents."
+	}, {
+		"index": 33,
+		"name": "Aliquots Sent To",
+		"key": "AliquotsSentTo",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter when and to whom aliquots have been sent."
+	}, {
+		"index": 34,
+		"name": "Notes",
+		"key": "Notes",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter and link all further information which is important to the vector."
+	}]
+}

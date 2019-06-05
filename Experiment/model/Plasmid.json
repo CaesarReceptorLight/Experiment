@@ -1,0 +1,363 @@
+{
+	"Basic Information": [{
+		"index": 1,
+		"name": "Unique ID",
+		"key": "UId",
+		"isVisible": "False",
+		"type": "'omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Global unique ID of this object."
+	}, {
+		"index": 2,
+		"name": "Unique Name",
+		"key": "Name",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Global unique Name of this object."
+	}, {
+		"index": 3,
+		"name": "Owner ID",
+		"key": "OwnerId",
+		"isVisible": "False",
+		"type": "'omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of user who creates this object."
+	}, {
+		"index": 4,
+		"name": "Owner Group ID",
+		"key": "OwnerGroupId",
+		"isVisible": "False",
+		"type": "'omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of group of user who creates this object."
+	}, {
+		"index": 5,
+		"name": "Original Object ID",
+		"key": "OriginalObjectId",
+		"isVisible": "False",
+		"type": "'omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of source object of this object, if this object is a copy of an existing object."
+	}, {
+		"index": 6,
+		"name": "Child Object IDs",
+		"key": "ChildObjectIds",
+		"isVisible": "False",
+		"type": "'omero.model.IntValueListI",
+		"uiType": "freeText",
+		"help": "ID of all child objects, if this object is a container object."
+	}, {
+		"index": 7,
+		"name": "Date and Time of creating",
+		"key": "CreationDateTime",
+		"isVisible": "False",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "date",
+		"help": "Date and Time of creating."
+	}, {
+		"index": 8,
+		"name": "Status",
+		"key": "Status",
+		"isVisible": "False",
+		"type": "'omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Status of this object (active, inactive, ...)"
+	}, {
+		"index": 9,
+		"name": "ID",
+		"key": "UniqueId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter a unique identifier used in your lab."
+	}, {
+		"index": 10,
+		"name": "Description",
+		"key": "Description",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter detailes about this plasmid."
+	}, {
+		"index": 11,
+		"name": "Plasmid-Map with Key Elements",
+		"key": "LinkedFileIds",
+		"isVisible": "True",
+		"type": "omero.model.IntValueListI",
+		"uiType": "multiplefiles",
+		"help": "Please enter a link to the plasmid map or attach a file (pdf, gb) which includes the plasmid-map with all key elements."
+	}, {
+		"index": 12,
+		"name": "Encoded Proteins",
+		"key": "EncodedProteins",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter the name of the encoded protein. e.g. CNGA3"
+	}, {
+		"index": 13,
+		"name": "Donor Organism",
+		"key": "DonorOrganism",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the organism from which the cDNA of the insert was obtained."
+	}, {
+		"index": 14,
+		"name": "Encoded Tags",
+		"key": "EncodedTags",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter the name of the (fluorescence) tags. If applicable, include links to the fluorescence tag database."
+	}, {
+		"index": 15,
+		"name": "Used Vector Backbone",
+		"key": "UsedVectorBackbone",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter the name of the used vector backbone. Include links to the respective plasmid/vector database."
+	}, {
+		"index": 16,
+		"name": "Plasmid Size and Length of Insertions",
+		"key": "PlasmidSizeLength",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the length of all encoded proteins, tags and the vector. Example: CNGA3 694 bp, 230 aa, GFP 720 bp, 240 aa, pCDNA3.1 5400 bp"
+	}, {
+		"index": 17,
+		"name": "Modifications",
+		"key": "Modifications",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter modification such as mutations, deletions, insertions. Example: TFP&#916;221-240,F555A"
+	}],
+	"Expression and Amplification": [{
+		"index": 18,
+		"name": "Expression System",
+		"key": "ExpressionSystem",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter information about the expression system you used."
+	}, {
+		"index": 19,
+		"name": "Bacterial Strain",
+		"key": "BacterialStrain",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the bacterial  strain used for transformation, Example: E. coli HB101"
+	}, {
+		"index": 20,
+		"name": "High or Low Copy",
+		"key": "HighLowCopy",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please choose the amplification level of the plasmid"
+	}, {
+		"index": 21,
+		"name": "Bacterial Resistance",
+		"key": "BacterialResistance",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the bacterial resistances which can be used to select the transformed bacteria."
+	}, {
+		"index": 22,
+		"name": "Growth Conditions",
+		"key": "GrowthConditions",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the growth conditions of the transformed bacteria or include the link to the SOP. Example: [Link to medium], incubation overnight at 37°C"
+	}, {
+		"index": 23,
+		"name": "Stable Cell Selection",
+		"key": "StableCallSelection",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the eukaryotic cell resistance which can be used to select transfected cells."
+	}],
+	"Cloning Information": [{
+		"index": 24,
+		"name": "cDNA Source",
+		"key": "CDNASource",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter the name of the plasmid and link it whenever it is possible to vectors/plasmids in the data base. If no entry can be found in the vectors/plasmid database, you should consider to enter the necessary information"
+	}, {
+		"index": 25,
+		"name": "Cloning Strategy and Used Primers",
+		"key": "CloningStrategyUsedPrimers",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please describe the cloning strategy (cloning site, restriction site, restriction enzymes, mutagenesis sites and used mutagenesis kit). List the primer used for PCR, sequencing or mutagenesis. Establish links to the olegonucleotide database whenever it is possible."
+	}],
+	"Information about the Origin": [{
+		"index": 26,
+		"name": "Reference PubMed ID",
+		"key": "ReferencePaperPubMedId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "weblink",
+		"linkType": "pubmed",
+		"help": "Please enter the PubMed ID of the paper."
+	}, {
+		"index": 27,
+		"name": "Reference Paper",
+		"key": "ReferencePaper",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the citation of the paper where the plasmid was described."
+	}, {
+		"index": 28,
+		"name": "Reference DOI",
+		"key": "ReferencePaperDOI",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "weblink",
+		"linkType": "doi",
+		"help": "Please enter the digital object identifier (doi) of the paper."
+	}, {
+		"index": 29,
+		"name": "NCBI GenBank ID",
+		"key": "NCBIGenBankId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "weblink",
+		"linkType": "ncbiNuccore",
+		"help": "Please enter the link to the NCBI GenBank."
+	}, {
+		"index": 30,
+		"name": "FASTA",
+		"key": "FASTALink",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "weblink",
+		"help": "Please enter a link to the FASTA database."
+	}, {
+		"index": 31,
+		"name": "Other Databases",
+		"key": "OtherLinks",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "H"
+	}, {
+		"index": 32,
+		"name": "Origin",
+		"key": "Origin",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the name of the creator of the plasmid and/or a link to the webpage."
+	}, {
+		"index": 33,
+		"name": "Origin ID",
+		"key": "OriginId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the original name or ID of the plasmid assigned by its creator."
+	}, {
+		"index": 34,
+		"name": "Distributor",
+		"key": "Distributor",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the name of the principal investigator / distributor, from whom the plasmid was obtained."
+	}, {
+		"index": 35,
+		"name": "Distributor Product ID",
+		"key": "DistributorProductId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the original name or ID of the plasmid used in the lab from whom the plasmid was received."
+	}, {
+		"index": 36,
+		"name": "Date of Receive",
+		"key": "ReceivedDate",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "date",
+		"help": "Please enter the date, when the plasmid was received."
+	}, {
+		"index": 37,
+		"name": "Verification",
+		"key": "Verification",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please indicate if the sequence of the plasmid has been verified."
+	}, {
+		"index": 38,
+		"name": "Verification Link",
+		"key": "VerificationLink",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter a link or attach a file with the original sequence data and the analysis of sequencing."
+	}, {
+		"index": 39,
+		"name": "Concentration of the Plasmid",
+		"key": "Concentration",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the concentration of the plasmid and the method used to determine the concentration."
+	}, {
+		"index": 40,
+		"name": "Storage",
+		"key": "PlasmidStorage",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the site where the original plasmid is stored, Example: Room 105, -80°C freezer, Rack A3, Box5, Slot 20"
+	}],
+	"Additional Information": [{
+		"index": 41,
+		"name": "Contact Person",
+		"key": "ContactPerson",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the names and departments of the contact persons or principal investigators who are responsible for this entry and should be contacted for further questions."
+	}, {
+		"index": 42,
+		"name": "Protected Sequences / MTAs",
+		"key": "ProteinSequences",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter information about license agreements which have to be complied with or upload files with material transfer documents."
+	}, {
+		"index": 43,
+		"name": "Aliquots Sent To",
+		"key": "AliquotsSentTo",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter when and to whom aliquots have been sent."
+	}, {
+		"index": 44,
+		"name": "Notes",
+		"key": "Notes",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter and link all further information which is important to the plasmid."
+	}]
+
+}

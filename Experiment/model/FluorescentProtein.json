@@ -1,0 +1,253 @@
+{
+	"Basic Information": [{
+		"index": 1,
+		"name": "Unique ID",
+		"key": "UId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Global unique ID of this object."
+	}, {
+		"index": 2,
+		"name": "Unique Name",
+		"key": "Name",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Global unique Name of this object."
+	}, {
+		"index": 3,
+		"name": "Owner ID",
+		"key": "OwnerId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of user who creates this object."
+	}, {
+		"index": 4,
+		"name": "Owner Group ID",
+		"key": "OwnerGroupId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of group of user who creates this object."
+	}, {
+		"index": 5,
+		"name": "Original Object ID",
+		"key": "OriginalObjectId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of source object of this object, if this object is a copy of an existing object."
+	}, {
+		"index": 6,
+		"name": "Child Object IDs",
+		"key": "ChildObjectIds",
+		"isVisible": "False",
+		"type": "omero.model.IntValueListI",
+		"uiType": "freeText",
+		"help": "ID of all child objects, if this object is a container object."
+	}, {
+		"index": 7,
+		"name": "Date and Time of creating",
+		"key": "CreationDateTime",
+		"isVisible": "False",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Date and Time of creating."
+	}, {
+		"index": 8,
+		"name": "Status",
+		"key": "Status",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Status of this object (active, inactive, ...)"
+	}, {
+		"index": 9,
+		"name": "ID",
+		"key": "UniqueId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter a unique identifier used in your lab."
+	}, {
+		"index": 10,
+		"name": "Description",
+		"key": "Description",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter detailes about this fluorescent protein."
+	}, {
+		"index": 11,
+		"name": "Additional Files",
+		"key": "LinkedFileIds",
+		"isVisible": "True",
+		"type": "omero.model.IntValueListI",
+		"uiType": "multiplefiles",
+		"help": "Please enter additional files."
+	}, {
+		"index": 12,
+		"name": "Used Vector / Plasmid",
+		"key": "UsedVectorPlasmid",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "If vector / plasmid are available enter the name and ID of the vector / plasmid here. Include a link to the respective plasmid/vector database."
+	}, {
+		"index": 13,
+		"name": "Organism",
+		"key": "Organism",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the organism from which the fluorescent protein was obtained."
+	}, {
+		"index": 14,
+		"name": "Protein Length and Molecular Weight",
+		"key": "LengthWeight",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the length and molecular weight of the fluorescent protein. Example: GFP 238aa, ~27kDa"
+	}, {
+		"index": 15,
+		"name": "Modifications",
+		"key": "Modification",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter modification such as mutations, deletions, insertions that have been introduced to generate the protein."
+	}, {
+		"index": 16,
+		"name": "Reference PubMed ID",
+		"key": "ReferencePaperPubMedId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "weblink",
+		"linkType": "pubmed",
+		"help": "Please enter the PubMed ID of the paper."
+	}, {
+		"index": 17,
+		"name": "Reference Paper",
+		"key": "ReferencePaper",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the citation of the paper where the protein was described."
+	}, {
+		"index": 18,
+		"name": "Reference DOI",
+		"key": "ReferencePaperDOI",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "weblink",
+		"linkType": "doi",
+		"help": "Please enter the digital object identifier (doi) of the paper."
+	}, {
+		"index": 19,
+		"name": "PDB ID",
+		"key": "PDbId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "weblink",
+		"help": "Please enter the RCSB protein data bank ID of the protein Example: 1EMA"
+	}],
+	"Spectral Properties": [{
+		"index": 20,
+		"name": "Absorption Maximum",
+		"key": "AbsorptionMaximum",
+		"isVisible": "True",
+		"type": "omero.rtypes.RDoubleI",
+		"uiType": "freeText",
+		"unit": "nm",
+		"help": "Please enter the wavelength of the excitation maximum."
+	}, {
+		"index": 21,
+		"name": "Absorption Spectrum",
+		"key": "AbsorptionSpectrumFileId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "file",
+		"help": "Please upload an ASCII file containing the excitation spectrum."
+	}, {
+		"index": 22,
+		"name": "Absorption Coefficient",
+		"key": "AbsorptionCoefficient",
+		"isVisible": "True",
+		"type": "omero.rtypes.RDoubleI",
+		"uiType": "freeText",
+		"unit": "1/M cm",
+		"help": "Please enter the absorption coefficient."
+	}, {
+		"index": 23,
+		"name": "Excitation Maximum",
+		"key": "ExcitationMaximum",
+		"isVisible": "True",
+		"type": "omero.rtypes.RDoubleI",
+		"uiType": "freeText",
+		"unit": "nm",
+		"help": "Please enter the wavelength of the excitation maximum."
+	}, {
+		"index": 24,
+		"name": "Excitation Spectrum",
+		"key": "ExcitationSpectrumFileId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "file",
+		"help": "Please upload an ASCII file containing the excitation spectrum."
+	}, {
+		"index": 25,
+		"name": "Emission Maximum",
+		"key": "EmissionMaximum",
+		"isVisible": "True",
+		"type": "omero.rtypes.RDoubleI",
+		"uiType": "freeText",
+		"unit": "%",
+		"help": "Please enter the wavelength of the emission maximum."
+	}, {
+		"index": 26,
+		"name": "Emission Spectrum",
+		"key": "EmissionSpectrumFileId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "file",
+		"help": "Please upload an ASCII file containing the emission spectrum."
+	}, {
+		"index": 27,
+		"name": "Quantum Yield",
+		"key": "QuantumYield",
+		"isVisible": "True",
+		"type": "omero.rtypes.RDoubleI",
+		"uiType": "freeText",
+		"unit": "%",
+		"help": "Please enter the quantum yield."
+	}, {
+		"index": 28,
+		"name": "Lifetime",
+		"key": "Lifetime",
+		"isVisible": "True",
+		"type": "omero.rtypes.RDoubleI",
+		"uiType": "freeText",
+		"unit": "ns",
+		"help": "Please enter the fluorescent lifetime."
+	}],
+	"Additional Information": [{
+		"index": 29,
+		"name": "Contact Person",
+		"key": "ContactPerson",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the names and departments of the contact persons or principal investigators who are responsible for this entry and should be contacted for further questions."
+	}, {
+		"index": 30,
+		"name": "Notes",
+		"key": "Notes",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter and link all further information which is important to the fluorescent protein."
+	}]
+}

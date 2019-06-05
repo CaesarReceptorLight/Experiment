@@ -1,0 +1,24 @@
+<div class="view_input tabContent">
+    <table id="dataTable" class="rl_dataTable tablesorter">
+        <thead>
+            <tr>
+                {% for colname in results.head.vars %}
+                    <th class="table_desc">{{colname}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        {% for result in results.results.bindings %}
+            <tr>
+            {% for colname in results.head.vars %}
+
+                {% for key, data in result.items %}
+                    {% if colname == key %}
+                        <td>{{data.value}}</td>
+                    {% endif %}
+                {% endfor %}
+
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</div>

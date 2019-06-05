@@ -1,0 +1,111 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    var tabs = $(".tabs-container").tabs();
+    var tabCounter = tabs.find('ul').first().children().length;
+
+    var last_valid_selection = null;
+
+    //Prevent selecting more than two entries in version list to compare
+    $('#versionlist').change(function(event) {
+        if ($(this).val().length > 2) {
+            $(this).val(last_valid_selection);
+        } else {
+            last_valid_selection = $(this).val();
+        }
+    });
+
+    //Alert to select atleast 2 versions in the version list to compare
+    $('.compare_button').click(function(event) {
+        var val = $('#versionlist').val().length;
+        if (val != 2) {
+            alert("Please select two versions to compare");
+            event.preventDefault();
+        }
+    });
+
+    // Open View Tab for Viewing
+    $('.view_tab').click( function(event){
+        event.preventDefault();
+        var url = $(this).attr("href");
+        var ul = tabs.find( "ul" );
+        $( '<li class="rl_tabs"><a href="' + url + '"><span class="rl_tab_header">View</span></a><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close ui-closable-tab" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></li>' ).appendTo( ul );
+        tabs.tabs( "refresh" );
+        tabs.tabs( "option", "active", -1 );
+    });
+});
+
+</script>
+<div class="view_input tabContent">
+    {% if history %}
+        <div class="header_class"><h1>Versions</h1></div>
+        {% for data in history %}
+            {% if forloop.last %}
+                <p class="form_element_label">{{data.name}}( {{data.id}} ) Created by {{data.ownername}} at {{data.creation_time}}</p>
+                <a href="{% url 'view_input_data' %}?input_type={{input_type}}&id={{data.id}}" class="rl_tabs view_tab">View</a><span></span>
+            {% else %}
+                <p class="form_element_label">{{data.name}}( {{data.id}} ) Modified by {{data.ownername}} at {{data.creation_time}}</p>
+                <a href="{% url 'view_input_data' %}?input_type={{input_type}}&id={{data.id}}" class="rl_tabs view_tab">View</a><span></span>
+            {% endif %}
+        {% endfor %}
+<p class="versionselection">
+    {% if history|length > 1 %}
+        <p></p><div class="header_class"><h1>Select any two versions to compare</h1></div></p>
+        <form action="{% url 'get_history_data' %}?input_type={{input_type}}&id={{input_id}}" method="post" enctype="multipart/form-data" target="_self" class="form_input">
+            {% csrf_token %}
+            <select id="versionlist" name="versions" multiple>
+            {% for data in history %}
+                {% if forloop.last %}
+                    <option value="{{data.id}}">{{data.name}}( {{data.id}} ) Created by {{data.ownername}} at {{data.creation_time}}</option>
+                {% else %}
+                    <option value="{{data.id}}">{{data.name}}( {{data.id}} ) Modified by {{data.ownername}} at {{data.creation_time}}</option>
+                {% endif %}
+            {% endfor %}
+                </select>
+            <button type="submit" class="compare_button">Compare</button>
+            {% endif %}
+        </form>
+    {% endif %}
+</div>
+
+{% if rlobject_difference %}
+    <div class="version-results">
+    <table id="dataTable" class="rl_dataTable tablesorter">
+        <thead>
+            <tr>
+                <th >Properties</th>
+                <th class="table_images">Version 1</th>
+                <th class="table_date">Version 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sec in sections %}
+                {% for section, data in rlobject_difference.items %}
+                    {% if sec == section %}
+                        <tr>
+                            <td class="section_label"><label for="{{key}}">{{ section }}:</label></td><td></td><td></td>
+                                {% for val in data %}
+                                    {% if val.isVisible == 'True' %}
+                                        <tr>
+                                            <td class="element_label"><label for="{{val.key}}">{{ val.name }}: </label></td>
+                                            {% if val.value1 != val.value2 %}
+                                                <td class="error"><p>{{ val.value1 }}</p></td>
+                                                <td class="error"><p>{{ val.value2 }}</p></td>
+                                            {% else %}
+                                                <td><p>{{ val.value1 }}</p></td>
+                                                <td><p>{{ val.value2 }}</p></td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endif %}
+
+</div>

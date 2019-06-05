@@ -1,0 +1,27 @@
+{% load form_utils %}
+{% load i18n %}
+{% load common_filters %}
+{% load common_tags %}
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        var tabs = $(".tabs-container").tabs();
+        var tabCounter = tabs.find('ul').first().children().length;
+    });
+</script>
+
+<div class="load_exp_material_dialog_details">
+    <div class="tabs-container" class="multitabdialog">
+        <ul class="tabs-menu">
+            <li class="rl_tabs"><a href="{% url 'list_all_input' %}?input_type={{input_type}}&dataset={{dataset}}"><span class="rl_tab_header">List All</span></a></li>
+            {% if can_add != "0" %}
+                <li class="rl_tabs"><a href="{% url 'save_input_data' %}?input_type={{input_type}}&dataset={{dataset}}"><span class="rl_tab_header">Add New</span></a><span class='ui-icon ui-icon-circle-close ui-closable-tab'></span></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="tab"></div>
+</div>
+<div class="delete_dialog" title="Delete"></div>
+
+

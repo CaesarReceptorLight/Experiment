@@ -1,0 +1,256 @@
+{
+	"Basic Information": [{
+		"index": 1,
+		"name": "Unique ID",
+		"key": "UId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Global unique ID of this object."
+	}, {
+		"index": 2,
+		"name": "Unique Name",
+		"key": "Name",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Global unique Name of this object."
+	}, {
+		"index": 3,
+		"name": "Owner ID",
+		"key": "OwnerId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of user who creates this object."
+	}, {
+		"index": 4,
+		"name": "Owner Group ID",
+		"key": "OwnerGroupId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of group of user who creates this object."
+	}, {
+		"index": 5,
+		"name": "Original Object ID",
+		"key": "OriginalObjectId",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "ID of source object of this object, if this object is a copy of an existing object."
+	}, {
+		"index": 6,
+		"name": "Child Object IDs",
+		"key": "ChildObjectIds",
+		"isVisible": "False",
+		"type": "omero.model.IntValueListI",
+		"uiType": "freeText",
+		"help": "ID of all child objects, if this object is a container object."
+	}, {
+		"index": 7,
+		"name": "Date and Time of creating",
+		"key": "CreationDateTime",
+		"isVisible": "False",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Date and Time of creating."
+	}, {
+		"index": 8,
+		"name": "Status",
+		"key": "Status",
+		"isVisible": "False",
+		"type": "omero.rtypes.RIntI",
+		"uiType": "freeText",
+		"help": "Status of this object (active, inactive, ...)"
+	}, {
+		"index": 9,
+		"name": "ID",
+		"key": "UniqueId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter a unique identifier used in your lab."
+	}, {
+		"index": 10,
+		"name": "Description",
+		"key": "Description",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter detailes about this protein."
+	}, {
+		"index": 11,
+		"name": "Additional Files",
+		"key": "LinkedFileIds",
+		"isVisible": "True",
+		"type": "omero.model.IntValueListI",
+		"uiType": "multiplefiles",
+		"help": "Please enter additional files."
+	}, {
+		"index": 12,
+		"name": "Used Plasmid / Vector",
+		"key": "UsedPlasmidVector",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter the name of the vector / plasmid used for the protein expression. Include links to the respective plasmid/vector database whenever possible."
+	}, {
+		"index": 13,
+		"name": "Organism",
+		"key": "Organism",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the organism from which the original cDNA of the isolated protein was obtained."
+	}, {
+		"index": 14,
+		"name": "Protein Size and Length",
+		"key": "Length",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the original and the actual size and length of the isolated protein. Example: mTFP ~27kDa, 711bp, 237aa"
+	}, {
+		"index": 15,
+		"name": "Modification",
+		"key": "Modification",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter modification such as mutations, deletions, insertions. Example: TFP&#916;221-240,F555A"
+	}, {
+		"index": 16,
+		"name": "Reference PubMed ID",
+		"key": "ReferencePaperPubMedId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "weblink",
+		"linkType": "ncbiNuccore",
+		"help": "Please enter the PubMed ID of the paper."
+	}, {
+		"index": 17,
+		"name": "Reference Paper",
+		"key": "ReferencePaper",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the citation of the paper where the protein was described."
+	}, {
+		"index": 18,
+		"name": "Reference DOI",
+		"key": "ReferencePaperDOI",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "weblink",
+		"linkType": "doi",
+		"help": "Please enter the digital object identifier (doi) of the paper."
+	}],
+	"Information about Isolation Procedure": [{
+		"index": 19,
+		"name": "Expression Protocol",
+		"key": "ExpressionProtocol",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please provide information about the expression system (bacteria/yeast) and the expression procedure by entering a description or placing links to SOPs."
+	}, {
+		"index": 20,
+		"name": "Storage of Expression System",
+		"key": "ExpressionStorage",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the site where the expression system is stored, Example: Room 105, -80°C freezer, Rack A3, Box5, Slot 20"
+	}, {
+		"index": 21,
+		"name": "Date of Purification",
+		"key": "DateOfPurification",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the date of the protein purification."
+	}, {
+		"index": 22,
+		"name": "Purification Protocol",
+		"key": "PurificationProtocol",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please provide information about the purification procedure by entering a description and placing links to SOPs."
+	}, {
+		"index": 23,
+		"name": "Concentration of Isolated Protein.",
+		"key": "Concentration",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the concentration of the isolated protein and the method used to determine the concentration. Example: Determination of the concentration via UV/Vis absorption E(462nm) = 0.4,d= 1cm (462nm)  = 40000 l/(cm mol) &#8594; c = 1 &#181;M"
+	}, {
+		"index": 24,
+		"name": "Verification of Purity",
+		"key": "Verification",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the method used to verify the identity and purity of the protein. Example: mass spectroscopy, immunoblotting, PAGE"
+	}, {
+		"index": 25,
+		"name": "Storage",
+		"key": "Storage",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the site where the isolated protein is stored, Example: Aliquots with 20% glycerol, room 105,-80°C freezer, Rack B2, Box3, Slot 18"
+	}],
+	"Origin": [{
+		"index": 26,
+		"name": "Origin",
+		"key": "Origin",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the name of the creator of the protein and/or a link to the webpage."
+	}, {
+		"index": 27,
+		"name": "Origin ID",
+		"key": "OriginId",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the original name or ID of the protein assigned by its creator."
+	}, {
+		"index": 28,
+		"name": "Date of Receive",
+		"key": "ReceivedDate",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "date",
+		"help": "Please enter the date, when the protein was received."
+	}],
+	"Additional Information": [{
+		"index": 29,
+		"name": "Contact Person",
+		"key": "ContactPerson",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter the names and departments of the contact persons or principal investigators who are responsible for this entry and should be contacted for further questions."
+	}, {
+		"index": 30,
+		"name": "Aliquots Sent To",
+		"key": "AliquotsSentTo",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "freeText",
+		"help": "Please enter when and to whom aliquots have been sent."
+	}, {
+		"index": 31,
+		"name": "Notes",
+		"key": "Notes",
+		"isVisible": "True",
+		"type": "omero.rtypes.RStringI",
+		"uiType": "richText",
+		"help": "Please enter and link all further information which is important to the plasmid."
+	}]
+}

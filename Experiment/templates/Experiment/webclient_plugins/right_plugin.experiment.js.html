@@ -1,0 +1,15 @@
+<script>
+
+$(document).ready(function() {
+
+    $("#receptor_experiment_tab").omeroweb_right_plugin({
+        plugin_index:{{ forloop.counter }},
+        load_plugin_content: function(selected, obj_dtype, obj_id) {
+            var url = '{% url 'Experiment_index' %}experiment/' + obj_dtype + '/' + obj_id + '/';
+            $(this).load(url);
+        },
+        supported_obj_types: ['dataset']
+    });
+
+});
+</script>
